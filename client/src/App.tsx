@@ -9,6 +9,7 @@ import Register from "@/pages/auth/Register";
 
 import Dashboard from "@/pages/dashboard/Dashboard";
 import Posts from "@/pages/dashboard/Posts";
+import PublicLayout from "./layouts/PublicLayout";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,8 +23,10 @@ const App = () => {
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicRoute isAuthenticated={isAuthenticated} />}>
-          <Route path="/login" element={<Login onLogin={onLogin} />} />
-          <Route path="/register" element={<Register />} />
+          <Route element={<PublicLayout />}>
+            <Route path="/login" element={<Login onLogin={onLogin} />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
         </Route>
 
         {/* Private Routes */}

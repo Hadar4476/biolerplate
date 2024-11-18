@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import PrivateRoute from "./components/PrivateRoute";
-import PublicRoute from "./components/PublicRoute";
+import PrivateRoute from "@/components/PrivateRoute";
+import PublicRoute from "@/components/PublicRoute";
 
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Login from "@/pages/auth/Login";
+import Register from "@/pages/auth/Register";
 
-import Home from "./pages/Home";
-import Posts from "./pages/Posts";
+import Dashboard from "@/pages/dashboard/Dashboard";
+import Posts from "@/pages/dashboard/Posts";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,7 +28,7 @@ const App = () => {
 
         {/* Private Routes */}
         <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/posts" element={<Posts />} />
         </Route>
 

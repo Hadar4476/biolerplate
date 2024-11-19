@@ -3,5 +3,11 @@ import { IDocument } from "./common";
 export interface IUser extends IDocument {
   name: string;
   email: string;
-  password: string;
+}
+
+export interface IAuthState {
+  isLoggedIn: boolean;
+  token: string | null;
+  expiryDate: string;
+  user: IUser | null;
 }

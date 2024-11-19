@@ -12,8 +12,14 @@ import Register from "@/pages/auth/Register/Register";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import Posts from "@/pages/dashboard/Posts";
 import PublicLayout from "./layouts/PublicLayout";
+import { useAppSelector } from "./store";
+import { authSelector } from "./store/reducers/auth";
 
 const App = () => {
+  const { isLoggedIn } = useAppSelector(authSelector);
+
+  console.log(isLoggedIn);
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {

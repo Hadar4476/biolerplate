@@ -1,5 +1,6 @@
-export type IPost = {
-  _id: string;
+import { IDocument } from "./common";
+
+export interface IPost extends IDocument {
   title: string;
   content: string;
-};
+}

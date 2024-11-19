@@ -1,4 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
+import { CommonRequest } from "../types";
+
 import jwt from "jsonwebtoken";
 import config from "../config";
 import AppError from "../error";
@@ -10,7 +12,7 @@ interface DecodedToken {
 }
 
 const checkAuthentication = (
-  req: Request,
+  req: CommonRequest,
   res: Response,
   next: NextFunction
 ): void => {
@@ -29,19 +31,24 @@ const checkAuthentication = (
   try {
     const decodedToken = jwt.verify(token, config.TOKEN_SECRET) as DecodedToken;
 
-    req.userId = decodedToken.userId;
+    console.log({ req });
+
+    req.user = {
+      id: decodedToken.userId,
+      // Add more properties if needed
+    };
 
     next();
   } catch (err) {
     if (err instanceof jwt.TokenExpiredError) {
-      throw new AppError("Token expired", 401);
+      return next(new AppError("Token expired", 401));
     }
 
     if (err instanceof jwt.JsonWebTokenError) {
-      throw new AppError("Invalid token", 401);
+      return next(new AppError("Invalid token", 401));
     }
 
-    throw new AppError("Authentication failed", 500);
+    next(new AppError("Authentication failed", 500));
   }
 };
 

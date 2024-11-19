@@ -1,17 +1,15 @@
 import { NextFunction, Request, Response } from "express";
+import { CommonRequest } from "../types";
 
 import Post from "../models/post";
 
 import AppError from "../error";
-import logger from "../logs/logger";
 
-const getPosts = async (req: Request, res: Response, next: NextFunction) => {
-  // const hasError = true;
-
-  // if (hasError) {
-  //   throw new AppError("Resource not found", 404);
-  // }
-
+const getPosts = async (
+  req: CommonRequest,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const posts = await Post.find().sort({ createdAt: -1 }); // Sort by latest
 
@@ -21,7 +19,11 @@ const getPosts = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const getPostById = async (req: Request, res: Response, next: NextFunction) => {
+const getPostById = async (
+  req: CommonRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const { postId } = req.params;
 
   try {
@@ -37,7 +39,11 @@ const getPostById = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const createPost = async (req: Request, res: Response, next: NextFunction) => {
+const createPost = async (
+  req: CommonRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const { title, content } = req.body;
 
   try {
@@ -51,7 +57,11 @@ const createPost = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const updatePost = async (req: Request, res: Response, next: NextFunction) => {
+const updatePost = async (
+  req: CommonRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const { postId } = req.params;
   const { title, content } = req.body;
 
@@ -73,7 +83,11 @@ const updatePost = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const deletePost = async (req: Request, res: Response, next: NextFunction) => {
+const deletePost = async (
+  req: CommonRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const { postId } = req.params;
 
   try {

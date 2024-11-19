@@ -1,4 +1,6 @@
-import { NextFunction, Request, Response } from "express";
+import { Response, NextFunction } from "express";
+import { CommonRequest } from "../types";
+
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -8,7 +10,7 @@ import User from "../models/user";
 
 import AppError from "../error";
 
-const login = async (req: Request, res: Response, next: NextFunction) => {
+const login = async (req: CommonRequest, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
 
   const errorMessage = "Invalid email or password";
@@ -49,7 +51,11 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const register = async (req: Request, res: Response, next: NextFunction) => {
+const register = async (
+  req: CommonRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const { name, email, password } = req.body;
 
   try {

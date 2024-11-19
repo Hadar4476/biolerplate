@@ -1,10 +1,12 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
+import { CommonRequest } from "../types";
+
 import AppError from "../error";
 import logger from "../logs/logger";
 
 const errorHandler = (
   err: Error,
-  req: Request,
+  req: CommonRequest,
   res: Response,
   next: NextFunction
 ) => {

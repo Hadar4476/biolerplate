@@ -44,7 +44,13 @@ const login = async (req: CommonRequest, res: Response, next: NextFunction) => {
     const token = jwt.sign(tokenJsonData, tokenSecret, tokenConfig);
 
     if (token) {
-      res.status(200).json({ token, userId });
+      // Deep copy the user object to ensure no references are passed
+      const mappedUser = JSON.parse(JSON.stringify(user.toObject()));
+
+      // Remove the password field from the copied object
+      delete mappedUser.password;
+
+      res.status(200).json({ token, user: mappedUser });
     }
   } catch (err) {
     next(err);

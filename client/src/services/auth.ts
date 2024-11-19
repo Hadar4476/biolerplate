@@ -11,7 +11,7 @@ import {
 export const login = async (
   userData: ILoginRequest
 ): Promise<ILoginResponse> => {
-  const response = await apiClient.put<ILoginResponse>(
+  const response = await apiClient.post<ILoginResponse>(
     `${ROUTE_NAMES.AUTH}/login`,
     userData
   );
@@ -22,7 +22,7 @@ export const login = async (
 export const register = async (
   userData: IRegisterRequest
 ): Promise<IUser["_id"]> => {
-  const response = await apiClient.put<IUser["_id"]>(
+  const response = await apiClient.post<IUser["_id"]>(
     `${ROUTE_NAMES.AUTH}/register`,
     userData
   );

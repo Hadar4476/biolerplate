@@ -4,5 +4,6 @@ export interface IDocument {
 
 export enum ROUTE_NAMES {
   AUTH = "/auth",
+  USER = "/user",
   POSTS = "/posts",
 }

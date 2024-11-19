@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useCreatePost } from "@/hooks/usePosts";
+import { useCreatePostApi } from "@/api/usePosts";
 import { IPost, ICreatePostRequest } from "@/types";
 import {
   TextField,
@@ -14,7 +14,8 @@ interface PostEditorProps {
 }
 
 const PostEditor = ({ id }: PostEditorProps) => {
-  const { mutate, isPending, isError, error } = useCreatePost();
+  const { mutateAsync, isPending, isError, error } = useCreatePostApi();
+
   const [postData, setPostData] = useState<ICreatePostRequest>({
     title: "",
     content: "",
@@ -27,11 +28,11 @@ const PostEditor = ({ id }: PostEditorProps) => {
     setPostData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Trigger the mutation
-    mutate(postData, {
+    await mutateAsync(postData, {
       onSuccess: (data: IPost) => {
         console.log("Post created successfully:", data);
         setPostData({ title: "", content: "" }); // Reset form

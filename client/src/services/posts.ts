@@ -8,10 +8,8 @@ export const fetchPosts = async (): Promise<IPost[]> => {
   return response.data;
 };
 
-export const fetcgPostById = async (postId: IPost["_id"]): Promise<IPost[]> => {
-  const response = await apiClient.get<IPost[]>(
-    `${ROUTE_NAMES.POSTS}/${postId}`
-  );
+export const fetchPostById = async (postId: IPost["_id"]): Promise<IPost> => {
+  const response = await apiClient.get<IPost>(`${ROUTE_NAMES.POSTS}/${postId}`);
 
   return response.data;
 };

@@ -5,6 +5,6 @@ import checkAuthentication from "../middleware/auth";
 
 const router = express.Router();
 
-router.get("/user/:userId", checkAuthentication, userController.getUser);
+router.get("/:userId", checkAuthentication, userController.getUser);
 
 export default router;

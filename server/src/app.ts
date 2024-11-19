@@ -12,6 +12,8 @@ import authRoutes from "./routes/auth";
 
 import errorHandler from "./middleware/error";
 
+import config from "./config";
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -28,4 +30,9 @@ app.use("/auth", authRoutes);
 
 app.use(errorHandler);
 
-app.listen(3000);
+app.listen(config.PORT);
+
+process.on("SIGINT", () => {
+  console.log("Shutting down server...");
+  process.exit();
+});

@@ -31,8 +31,6 @@ const checkAuthentication = (
   try {
     const decodedToken = jwt.verify(token, config.TOKEN_SECRET) as DecodedToken;
 
-    console.log({ req });
-
     req.user = {
       id: decodedToken.userId,
       // Add more properties if needed

@@ -7,6 +7,7 @@ import requestLogger from "./logs/request-logger";
 import connectToDatabase from "./database";
 
 import postsRoutes from "./routes/posts";
+import authRoutes from "./routes/auth";
 
 import errorHandler from "./middleware/error";
 
@@ -21,6 +22,7 @@ app.use(cors());
 connectToDatabase();
 
 app.use("/posts", postsRoutes);
+app.use("/auth", authRoutes);
 
 app.use(errorHandler);
 

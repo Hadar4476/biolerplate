@@ -10,7 +10,7 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.Console(), // Console transport for development
     new DailyRotateFile({
-      filename: "logs/application-%DATE%.log", // File path pattern
+      filename: "/src/logs/logs/application-%DATE%.log", // File path pattern
       datePattern: "YYYY-MM-DD", // Rotate logs daily
       maxFiles: "14d", // Keep logs for 14 days
       zippedArchive: true, // Compress old logs
@@ -21,7 +21,7 @@ const logger = winston.createLogger({
 // Add additional transport for errors if needed
 logger.add(
   new DailyRotateFile({
-    filename: "logs/error-%DATE%.log",
+    filename: "/src/logs/logs/error-%DATE%.log",
     level: "error",
     datePattern: "YYYY-MM-DD",
     maxFiles: "30d", // Retain error logs for 30 days

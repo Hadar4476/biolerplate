@@ -2,15 +2,15 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 interface PublicRouteProps {
-  isAuthenticated: boolean;
+  isLoggedIn: boolean;
   redirectTo?: string;
 }
 
 const PublicRoute: React.FC<PublicRouteProps> = ({
-  isAuthenticated,
+  isLoggedIn,
   redirectTo = "/",
 }) => {
-  return isAuthenticated ? <Navigate to={redirectTo} /> : <Outlet />;
+  return isLoggedIn ? <Navigate to={redirectTo} /> : <Outlet />;
 };
 
 export default PublicRoute;

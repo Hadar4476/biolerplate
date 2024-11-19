@@ -2,15 +2,15 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 interface PrivateRouteProps {
-  isAuthenticated: boolean;
+  isLoggedIn: boolean;
   redirectTo?: string;
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({
-  isAuthenticated,
+  isLoggedIn,
   redirectTo = "/login",
 }) => {
-  return isAuthenticated ? <Outlet /> : <Navigate to={redirectTo} />;
+  return isLoggedIn ? <Outlet /> : <Navigate to={redirectTo} />;
 };
 
 export default PrivateRoute;

@@ -1,5 +1,14 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+
+import { useAppSelector } from "./store";
+import { authActions, authSelector } from "./store/reducers/auth";
+import { useDispatch } from "react-redux";
 
 import { fetchUser } from "@/services/user";
 
@@ -12,15 +21,11 @@ import Register from "@/pages/auth/Register/Register";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import Posts from "@/pages/dashboard/Posts";
 import PublicLayout from "./layouts/PublicLayout";
-import { useAppSelector } from "./store";
-import { authSelector } from "./store/reducers/auth";
 
 const App = () => {
+  const dispatch = useDispatch();
+
   const { isLoggedIn } = useAppSelector(authSelector);
-
-  console.log(isLoggedIn);
-
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -59,6 +64,8 @@ const App = () => {
 
   const onGetUser = async () => {
     const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("token");
+    const expiryDate = localStorage.getItem("expiryDate");
 
     if (!userId) {
       return;
@@ -69,7 +76,14 @@ const App = () => {
 
       console.log(user);
 
-      // save user to store
+      dispatch(
+        authActions.setLoggedInUser({
+          isLoggedIn: true,
+          token,
+          expiryDate,
+          user,
+        })
+      );
     } catch (err) {
       console.log(err);
     }
@@ -79,7 +93,7 @@ const App = () => {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route element={<PublicRoute isAuthenticated={isAuthenticated} />}>
+        <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
           <Route element={<PublicLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -87,7 +101,7 @@ const App = () => {
         </Route>
 
         {/* Private Routes */}
-        <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+        <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/posts" element={<Posts />} />
         </Route>

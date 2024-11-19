@@ -8,6 +8,6 @@ export interface IUser extends IDocument {
 export interface IAuthState {
   isLoggedIn: boolean;
   token: string | null;
-  expiryDate: string;
+  expiryDate: string | null;
   user: IUser | null;
 }

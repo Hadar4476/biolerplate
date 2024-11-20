@@ -1,7 +1,7 @@
 import { fetchUser } from "@/services/user";
 import { authActions } from "@/store/reducers/auth";
 import { generalActions } from "@/store/reducers/general";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
 const useCheckAuth = () => {
@@ -9,7 +9,7 @@ const useCheckAuth = () => {
 
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
+  const checkAuth = () => {
     const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
 
@@ -24,8 +24,9 @@ const useCheckAuth = () => {
       new Date(expiryDate).getTime() - new Date().getTime();
 
     if (hasExpired) {
+      onLogout();
       dispatch(generalActions.setIsAppLoaded(true));
-      return onLogout();
+      return;
     }
 
     onGetUser();
@@ -36,7 +37,7 @@ const useCheckAuth = () => {
         clearTimeout(timeoutIdRef.current);
       }
     };
-  }, []);
+  };
 
   const onLogout = () => {
     localStorage.removeItem("token");
@@ -82,6 +83,8 @@ const useCheckAuth = () => {
       dispatch(generalActions.setIsAppLoaded(true));
     }
   };
+
+  return checkAuth;
 };
 
 export default useCheckAuth;

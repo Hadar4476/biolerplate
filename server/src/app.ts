@@ -1,3 +1,9 @@
+// WHAT TO DO IF YOU GET: Error: listen EADDRINUSE: address already in use :::3000
+
+// IN TERMINAL
+// run "netstat -aon | findstr :3000"
+// run "taskkill /PID <PID_HERE>> /F"
+
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";

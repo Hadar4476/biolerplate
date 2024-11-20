@@ -12,11 +12,16 @@ import PublicLayout from "./layouts/PublicLayout";
 import useCheckAuth from "./hooks/useCheckAuth";
 import { useAppSelector } from "./store";
 import { generalSelector } from "./store/reducers/general";
+import { useEffect } from "react";
 
 const App = () => {
   const { isAppLoaded } = useAppSelector(generalSelector);
 
-  useCheckAuth();
+  const checkAuth = useCheckAuth();
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   if (!isAppLoaded) {
     return <div>loading...</div>;

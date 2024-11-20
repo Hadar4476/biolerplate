@@ -1,15 +1,17 @@
 import apiClient from "@/api-client";
 
-import { IPost, ICreatePostRequest, ROUTE_NAMES } from "@/types";
+import { IPost, ICreatePostRequest } from "@/types";
+
+const route = "/posts";
 
 export const fetchPosts = async (): Promise<IPost[]> => {
-  const response = await apiClient.get<IPost[]>(ROUTE_NAMES.POSTS);
+  const response = await apiClient.get<IPost[]>(route);
 
   return response.data;
 };
 
 export const fetchPostById = async (postId: IPost["_id"]): Promise<IPost> => {
-  const response = await apiClient.get<IPost>(`${ROUTE_NAMES.POSTS}/${postId}`);
+  const response = await apiClient.get<IPost>(`${route}/${postId}`);
 
   return response.data;
 };
@@ -17,14 +19,14 @@ export const fetchPostById = async (postId: IPost["_id"]): Promise<IPost> => {
 export const createPost = async (
   postData: ICreatePostRequest
 ): Promise<IPost> => {
-  const response = await apiClient.post<IPost>(ROUTE_NAMES.POSTS, postData);
+  const response = await apiClient.post<IPost>(route, postData);
 
   return response.data;
 };
 
 export const updatePost = async (postData: IPost): Promise<IPost> => {
   const response = await apiClient.put<IPost>(
-    `${ROUTE_NAMES.POSTS}/${postData._id}`,
+    `${route}/${postData._id}`,
     postData
   );
 
@@ -34,9 +36,7 @@ export const updatePost = async (postData: IPost): Promise<IPost> => {
 export const deletePost = async (
   postId: IPost["_id"]
 ): Promise<IPost["_id"]> => {
-  const response = await apiClient.delete<IPost["_id"]>(
-    `${ROUTE_NAMES.POSTS}/${postId}`
-  );
+  const response = await apiClient.delete<IPost["_id"]>(`${route}/${postId}`);
 
   return response.data;
 };

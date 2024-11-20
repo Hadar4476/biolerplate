@@ -1,22 +1,7 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Box, Container } from "@mui/material";
-import { useAppSelector } from "@/store";
-import { authSelector } from "@/store/reducers/auth";
-import { useEffect } from "react";
 
 const PublicLayout = () => {
-  const navigate = useNavigate();
-
-  const { isLoggedIn } = useAppSelector(authSelector);
-
-  useEffect(() => {
-    console.log(isLoggedIn);
-
-    if (isLoggedIn) {
-      navigate("/");
-    }
-  }, [isLoggedIn]);
-
   return (
     <Box className="min-h-screen w-full flex flex-col">
       {/* Header */}

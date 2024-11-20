@@ -1,16 +1,20 @@
-import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { useAppSelector } from "@/store";
+import { authSelector } from "@/store/reducers/auth";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
-interface PublicRouteProps {
-  isLoggedIn: boolean;
-  redirectTo?: string;
-}
+const PublicRoute = () => {
+  const navigate = useNavigate();
 
-const PublicRoute: React.FC<PublicRouteProps> = ({
-  isLoggedIn,
-  redirectTo = "/",
-}) => {
-  return isLoggedIn ? <Navigate to={redirectTo} /> : <Outlet />;
+  const { isLoggedIn } = useAppSelector(authSelector);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
+
+  return <Outlet />;
 };
 
 export default PublicRoute;

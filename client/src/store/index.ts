@@ -14,8 +14,6 @@ const store = configureStore({
 
 store.subscribe(() => {});
 
-export type AppDispatch = typeof store.dispatch;
-
 export const useAppSelector: TypedUseSelectorHook<IRootState> = useSelector;
 
 export default store;

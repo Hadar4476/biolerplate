@@ -1,16 +1,20 @@
-import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { useAppSelector } from "@/store";
+import { authSelector } from "@/store/reducers/auth";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
-interface PrivateRouteProps {
-  isLoggedIn: boolean;
-  redirectTo?: string;
-}
+const PrivateRoute = () => {
+  const { isLoggedIn } = useAppSelector(authSelector);
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({
-  isLoggedIn,
-  redirectTo = "/login",
-}) => {
-  return isLoggedIn ? <Outlet /> : <Navigate to={redirectTo} />;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
+
+  return <Outlet />;
 };
 
 export default PrivateRoute;

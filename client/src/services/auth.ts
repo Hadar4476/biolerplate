@@ -1,18 +1,19 @@
 import apiClient from "@/api-client";
 
 import {
-  ROUTE_NAMES,
   IUser,
   IRegisterRequest,
   ILoginRequest,
   ILoginResponse,
 } from "@/types";
 
+const route = "/auth";
+
 export const login = async (
   userData: ILoginRequest
 ): Promise<ILoginResponse> => {
   const response = await apiClient.post<ILoginResponse>(
-    `${ROUTE_NAMES.AUTH}/login`,
+    `${route}/login`,
     userData
   );
 
@@ -23,7 +24,7 @@ export const register = async (
   userData: IRegisterRequest
 ): Promise<IUser["_id"]> => {
   const response = await apiClient.post<IUser["_id"]>(
-    `${ROUTE_NAMES.AUTH}/register`,
+    `${route}/register`,
     userData
   );
 

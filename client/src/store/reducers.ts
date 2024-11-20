@@ -1,11 +1,11 @@
-import { IRootState } from "@/types";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { combineReducers } from "@reduxjs/toolkit";
 
 import auth from "./reducers/auth";
+import general from "./reducers/general";
 
 const rootReducer = combineReducers({
   auth,
+  general,
 });
 
 export default rootReducer;

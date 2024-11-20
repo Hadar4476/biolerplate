@@ -10,9 +10,17 @@ import Dashboard from "@/pages/dashboard/Dashboard";
 import Posts from "@/pages/dashboard/Posts";
 import PublicLayout from "./layouts/PublicLayout";
 import useCheckAuth from "./hooks/useCheckAuth";
+import { useAppSelector } from "./store";
+import { generalSelector } from "./store/reducers/general";
 
 const App = () => {
+  const { isAppLoaded } = useAppSelector(generalSelector);
+
   useCheckAuth();
+
+  if (!isAppLoaded) {
+    return <div>loading...</div>;
+  }
 
   return (
     <Router>

@@ -2,6 +2,8 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useLoginApi } from "@/api/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "@/store/reducers/auth";
 
 // Define the shape of your form fields
 interface LoginFormValues {
@@ -11,6 +13,7 @@ interface LoginFormValues {
 
 // Define the hook
 export const useLogin = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { mutate, isPending, error } = useLoginApi();
@@ -60,6 +63,16 @@ export const useLogin = () => {
           localStorage.setItem("expiryDate", expiryDate.toISOString());
 
           // save in store
+
+          dispatch(
+            authActions.setLoggedInUser({
+              isLoggedIn: true,
+              token,
+              expiryDate: expiryDate.toISOString(),
+              user,
+            })
+          );
+
           navigate("/");
         },
         onError: (error) => {

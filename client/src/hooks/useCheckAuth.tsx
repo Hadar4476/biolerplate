@@ -1,24 +1,18 @@
 import { fetchUser } from "@/services/user";
-import { useAppSelector } from "@/store";
-import { authActions, authSelector } from "@/store/reducers/auth";
-import { useEffect, useState } from "react";
+import { authActions } from "@/store/reducers/auth";
+import { generalActions } from "@/store/reducers/general";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 const useCheckAuth = () => {
   const dispatch = useDispatch();
 
-  const { isLoggedIn } = useAppSelector(authSelector);
-
-  const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
-    setIsLoading(true);
-
     const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
 
     if (!token || !expiryDate) {
-      setIsLoading(false);
+      dispatch(generalActions.setIsAppLoaded(true));
       return;
     }
 
@@ -28,6 +22,7 @@ const useCheckAuth = () => {
       new Date(expiryDate).getTime() - new Date().getTime();
 
     if (hasExpired) {
+      dispatch(generalActions.setIsAppLoaded(true));
       return onLogout();
     }
 
@@ -39,8 +34,6 @@ const useCheckAuth = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
-
-    setIsLoading(false);
   };
 
   const onAutoLogout = (milliseconds: number) => {
@@ -74,7 +67,7 @@ const useCheckAuth = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      setIsLoading(false);
+      dispatch(generalActions.setIsAppLoaded(true));
     }
   };
 };

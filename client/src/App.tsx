@@ -11,11 +11,11 @@ import Posts from "@/pages/dashboard/Posts";
 import PublicLayout from "./layouts/PublicLayout";
 import useCheckAuth from "./hooks/useCheckAuth";
 import { useAppSelector } from "./store";
-import { generalSelector } from "./store/reducers/general";
+import { systemSelector } from "./store/reducers/system";
 import { useEffect } from "react";
 
 const App = () => {
-  const { isAppLoaded } = useAppSelector(generalSelector);
+  const { isAppLoaded } = useAppSelector(systemSelector);
 
   const checkAuth = useCheckAuth();
 

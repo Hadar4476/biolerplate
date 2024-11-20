@@ -10,11 +10,11 @@ export enum ROUTE_NAMES {
 export interface IDocument {
   _id: string;
 }
-export interface IGeneralState {
+export interface ISystemState {
   isAppLoaded: boolean;
 }
 
 export interface IRootState {
   auth: IAuthState;
-  general: IGeneralState;
+  system: ISystemState;
 }

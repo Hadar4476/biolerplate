@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 import auth from "./reducers/auth";
-import general from "./reducers/general";
+import system from "./reducers/system";
 
 const rootReducer = combineReducers({
   auth,
-  general,
+  system,
 });
 
 export default rootReducer;

@@ -1,6 +1,6 @@
 import { fetchUser } from "@/services/user";
 import { authActions } from "@/store/reducers/auth";
-import { generalActions } from "@/store/reducers/general";
+import { systemActions } from "@/store/reducers/system";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
@@ -14,7 +14,7 @@ const useCheckAuth = () => {
     const expiryDate = localStorage.getItem("expiryDate");
 
     if (!token || !expiryDate) {
-      dispatch(generalActions.setIsAppLoaded(true));
+      dispatch(systemActions.setIsAppLoaded(true));
       return;
     }
 
@@ -25,7 +25,7 @@ const useCheckAuth = () => {
 
     if (hasExpired) {
       onLogout();
-      dispatch(generalActions.setIsAppLoaded(true));
+      dispatch(systemActions.setIsAppLoaded(true));
       return;
     }
 
@@ -80,7 +80,7 @@ const useCheckAuth = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      dispatch(generalActions.setIsAppLoaded(true));
+      dispatch(systemActions.setIsAppLoaded(true));
     }
   };
 

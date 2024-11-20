@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const PrivateRoute = () => {
-  const { isLoggedIn } = useAppSelector(authSelector);
-
   const navigate = useNavigate();
+
+  const { isLoggedIn } = useAppSelector(authSelector);
 
   useEffect(() => {
     if (!isLoggedIn) {

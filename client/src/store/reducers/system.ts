@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const defaultSystemState: ISystemState = {
   isAppLoaded: false,
+  language: "en",
 };
 
 const system = createSlice({
@@ -11,6 +12,9 @@ const system = createSlice({
   reducers: {
     setIsAppLoaded: (state, action: PayloadAction<boolean>) => {
       state.isAppLoaded = action.payload;
+    },
+    setLanguage: (state, action: PayloadAction<string>) => {
+      state.language = action.payload;
     },
   },
 });

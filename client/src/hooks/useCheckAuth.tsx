@@ -1,11 +1,17 @@
+import { useRef } from "react";
+
+import useLogout from "./useLogout";
+
 import { fetchUser } from "@/services/user";
+
+import { useDispatch } from "react-redux";
 import { authActions } from "@/store/reducers/auth";
 import { systemActions } from "@/store/reducers/system";
-import { useRef } from "react";
-import { useDispatch } from "react-redux";
 
 const useCheckAuth = () => {
   const dispatch = useDispatch();
+
+  const logout = useLogout();
 
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -24,7 +30,7 @@ const useCheckAuth = () => {
       new Date(expiryDate).getTime() - new Date().getTime();
 
     if (hasExpired) {
-      onLogout();
+      logout();
       dispatch(systemActions.setIsAppLoaded(true));
       return;
     }
@@ -39,19 +45,13 @@ const useCheckAuth = () => {
     };
   };
 
-  const onLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("expiryDate");
-    localStorage.removeItem("userId");
-  };
-
   const onAutoLogout = (milliseconds: number) => {
     if (timeoutIdRef.current) {
       clearTimeout(timeoutIdRef.current);
     }
 
     timeoutIdRef.current = setTimeout(() => {
-      onLogout();
+      logout();
     }, milliseconds);
   };
 
@@ -66,8 +66,6 @@ const useCheckAuth = () => {
 
     try {
       const user = await fetchUser(userId);
-
-      console.log(user);
 
       dispatch(
         authActions.setLoggedInUser({

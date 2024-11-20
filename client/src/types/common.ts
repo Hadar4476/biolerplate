@@ -12,6 +12,7 @@ export interface IDocument {
 }
 export interface ISystemState {
   isAppLoaded: boolean;
+  language: string;
 }
 
 export interface IRootState {

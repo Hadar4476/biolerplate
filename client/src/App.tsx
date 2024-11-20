@@ -1,25 +1,33 @@
+import { useEffect } from "react";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import useCheckAuth from "./hooks/useCheckAuth";
+import useCheckLanguage from "./hooks/useCheckLanguage";
+
+import { useAppSelector } from "./store";
+import { systemSelector } from "./store/reducers/system";
 
 import PrivateRoute from "@/components/PrivateRoute";
 import PublicRoute from "@/components/PublicRoute";
+
+import PublicLayout from "./layouts/PublicLayout";
+import PrivateLayout from "./layouts/PrivateLayout";
 
 import Login from "@/pages/auth/Login/Login";
 import Register from "@/pages/auth/Register/Register";
 
 import Dashboard from "@/pages/dashboard/Dashboard";
 import Posts from "@/pages/dashboard/Posts";
-import PublicLayout from "./layouts/PublicLayout";
-import useCheckAuth from "./hooks/useCheckAuth";
-import { useAppSelector } from "./store";
-import { systemSelector } from "./store/reducers/system";
-import { useEffect } from "react";
 
 const App = () => {
   const { isAppLoaded } = useAppSelector(systemSelector);
 
+  const checkLanguage = useCheckLanguage();
   const checkAuth = useCheckAuth();
 
   useEffect(() => {
+    checkLanguage();
     checkAuth();
   }, []);
 
@@ -28,7 +36,7 @@ const App = () => {
   }
 
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicRoute />}>
@@ -40,8 +48,10 @@ const App = () => {
 
         {/* Private Routes */}
         <Route element={<PrivateRoute />}>
-          <Route path="/posts" element={<Posts />} />
-          <Route path="/" element={<Dashboard />} />
+          <Route element={<PrivateLayout />}>
+            <Route path="/posts" element={<Posts />} />
+            <Route path="/" element={<Dashboard />} />
+          </Route>
         </Route>
 
         {/* Catch-All Route */}

@@ -1,11 +1,13 @@
 import { fetchUser } from "@/services/user";
 import { authActions } from "@/store/reducers/auth";
 import { generalActions } from "@/store/reducers/general";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 const useCheckAuth = () => {
   const dispatch = useDispatch();
+
+  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -28,6 +30,12 @@ const useCheckAuth = () => {
 
     onGetUser();
     onAutoLogout(remainingMilliseconds);
+
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
   }, []);
 
   const onLogout = () => {
@@ -37,7 +45,11 @@ const useCheckAuth = () => {
   };
 
   const onAutoLogout = (milliseconds: number) => {
-    setTimeout(() => {
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
+    }
+
+    timeoutIdRef.current = setTimeout(() => {
       onLogout();
     }, milliseconds);
   };

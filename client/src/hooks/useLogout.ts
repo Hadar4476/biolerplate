@@ -1,8 +1,10 @@
+import { IAuthState } from "@/types";
+
+import { useDispatch } from "react-redux";
 import { authActions } from "@/store/reducers/auth";
 import { systemActions } from "@/store/reducers/system";
-import { IAuthState } from "@/types";
+
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 
 const useLogout = () => {
   const dispatch = useDispatch();

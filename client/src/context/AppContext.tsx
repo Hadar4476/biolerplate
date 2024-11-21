@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
 interface AppLoadedContextProps {
-  isAppLoaded: boolean;
+  isAppLoadedd: boolean;
   setAppLoaded: (loaded: boolean) => void;
 }
 
@@ -14,14 +14,14 @@ interface AppLoadedProviderProps {
 }
 
 export const AppLoadedProvider = ({ children }: AppLoadedProviderProps) => {
-  const [isAppLoaded, setIsAppLoaded] = useState(false);
+  const [isAppLoadedd, setIsAppLoaded] = useState(false);
 
   const setAppLoaded = (loaded: boolean) => {
     setIsAppLoaded(loaded);
   };
 
   return (
-    <AppLoadedContext.Provider value={{ isAppLoaded, setAppLoaded }}>
+    <AppLoadedContext.Provider value={{ isAppLoadedd, setAppLoaded }}>
       {children}
     </AppLoadedContext.Provider>
   );

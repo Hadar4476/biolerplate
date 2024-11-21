@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Box, Container } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 
 const PrivateLayout = () => {
   return (

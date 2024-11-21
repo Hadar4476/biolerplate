@@ -14,9 +14,9 @@ const PrivateLayout = () => {
       </AppBar>
 
       {/* Content */}
-      <Container className="flex-grow mt-4">
+      <main className="flex-grow mt-4">
         <Outlet />
-      </Container>
+      </main>
 
       {/* Footer */}
       <Box

@@ -10,7 +10,13 @@ import {
 } from "@/services/posts";
 
 export const useFetchPostsApi = () => {
-  return useQuery<IPost[]>({ queryKey: ["posts"], queryFn: fetchPosts });
+  return useQuery<IPost[]>({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+    // refetches posts to make sure users get the most updated posts
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
+  });
 };
 
 export const useFetchPostByIdApi = (postId: IPost["_id"]) => {

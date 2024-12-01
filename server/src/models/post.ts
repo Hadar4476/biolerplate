@@ -5,7 +5,7 @@ interface IPost extends Document {
   content: string;
 }
 
-const PostSchema: Schema = new Schema(
+const postSchema: Schema = new Schema(
   {
     title: { type: String, required: true },
     content: { type: String, required: true },
@@ -13,6 +13,6 @@ const PostSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-const Post = mongoose.model<IPost>("Post", PostSchema);
+const Post = mongoose.model<IPost>("Post", postSchema);
 
 export default Post;

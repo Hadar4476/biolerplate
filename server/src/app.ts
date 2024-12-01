@@ -4,6 +4,9 @@
 // run "netstat -aon | findstr :3000"
 // run "taskkill /PID <PID_HERE> /F"
 
+// OR
+// go to task manager and see if there are duplicates for the mongodb server and end them.
+
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -21,6 +24,8 @@ import config from "./config";
 import mongoose from "mongoose";
 
 import http from "http";
+
+import initLogs from "./utils/initLogs";
 
 const app = express();
 
@@ -40,7 +45,9 @@ const server = http.createServer(app);
 
 mongoose
   .connect(config.MONGO_URI)
-  .then((result) => {
+  .then(async (result) => {
+    await initLogs();
+
     if (require.main === module) {
       server.listen(config.PORT, () => {
         console.log(`Server running on port ${config.PORT}`);

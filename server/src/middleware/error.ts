@@ -18,7 +18,11 @@ const errorHandler = (
     message = err.message;
   }
 
-  logger.error("An error occurred", { error: err });
+  logger.error({
+    message: "An error occurred",
+    meta: { error: err, url: req.url, method: req.method },
+  });
+
   res.status(statusCode).json({
     status: "error",
     statusCode,

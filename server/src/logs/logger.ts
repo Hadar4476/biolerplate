@@ -1,32 +1,16 @@
-import winston from "winston";
-import DailyRotateFile from "winston-daily-rotate-file";
+import { createLogger, format, transports } from "winston";
+import MongoDBTransport from "./MongoDBTransport";
 
-const logger = winston.createLogger({
+const logger = createLogger({
   level: "info",
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json()
+  format: format.combine(
+    format.timestamp(),
+    format.json() // Logs in JSON format
   ),
   transports: [
-    new winston.transports.Console(), // Console transport for development
-    new DailyRotateFile({
-      filename: "logs/application-%DATE%.log", // File path pattern
-      datePattern: "YYYY-MM-DD", // Rotate logs daily
-      maxFiles: "14d", // Keep logs for 14 days
-      zippedArchive: true, // Compress old logs
-    }),
+    new transports.Console(), // Console for debugging
+    new MongoDBTransport(), // Save logs to MongoDB
   ],
 });
-
-// Add additional transport for errors if needed
-logger.add(
-  new DailyRotateFile({
-    filename: "logs/error-%DATE%.log",
-    level: "error",
-    datePattern: "YYYY-MM-DD",
-    maxFiles: "30d", // Retain error logs for 30 days
-    zippedArchive: true,
-  })
-);
 
 export default logger;

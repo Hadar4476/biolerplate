@@ -60,7 +60,6 @@ const App = () => {
       element: <PrivateRoute />, // Wrapper for private routes
       children: privateRoutes,
     },
-    { path: "*", element: <Navigate to={ROUTE_NAMES.HOME} replace /> },
   ]);
 
   return (

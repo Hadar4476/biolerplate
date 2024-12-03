@@ -2,6 +2,9 @@ import { useEffect } from "react";
 
 import { Routes, Route } from "react-router-dom";
 
+import { ThemeContextProvider } from "@/context/ThemeContext";
+import CssBaseline from "@mui/material/CssBaseline";
+
 import useCheckAuth from "./hooks/useCheckAuth";
 import useCheckLanguage from "./hooks/useCheckLanguage";
 
@@ -46,26 +49,29 @@ const App = () => {
   }
 
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route element={<PublicRoute />}>
-        <Route element={<PublicLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+    <ThemeContextProvider>
+      <CssBaseline />
+      <Routes>
+        {/* Public Routes */}
+        <Route element={<PublicRoute />}>
+          <Route element={<PublicLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
         </Route>
-      </Route>
 
-      {/* Private Routes */}
-      <Route element={<PrivateRoute />}>
-        <Route element={<PrivateLayout />}>
-          <Route path="/posts" element={<Posts />} />
-          <Route path="/" element={<Dashboard />} />
+        {/* Private Routes */}
+        <Route element={<PrivateRoute />}>
+          <Route element={<PrivateLayout />}>
+            <Route path="/posts" element={<Posts />} />
+            <Route path="/" element={<Dashboard />} />
+          </Route>
         </Route>
-      </Route>
 
-      {/* Catch-All Route */}
-      <Route path="*" element={<h1>404 Not Found</h1>} />
-    </Routes>
+        {/* Catch-All Route */}
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
+    </ThemeContextProvider>
   );
 };
 

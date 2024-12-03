@@ -1,7 +1,7 @@
 // ThemeContext.tsx
 import React, { createContext, useContext, useState } from "react";
 import { ThemeProvider, Theme } from "@mui/material/styles";
-import { lightTheme, darkTheme } from "@/themes";
+import { lightTheme, darkTheme } from "@/theme";
 
 interface ThemeContextProps {
   toggleTheme: () => void;

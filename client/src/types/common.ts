@@ -5,6 +5,7 @@ export enum ROUTE_NAMES {
   REGISTER = "/register",
   POSTS = "/posts",
   NOT_FOUND = "/not-found",
+  DASHBOARD = "/dashboard",
   HOME = "/",
 }
 export interface IDocument {

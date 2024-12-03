@@ -1,11 +1,9 @@
-import { createTheme } from "@mui/material";
-import components from "./components";
+import { createTheme } from "@mui/material/styles";
 
-const lightTheme = createTheme({
+export const lightTheme = createTheme({
   palette: {
     mode: "light",
+    primary: { main: "#1976d2" },
+    secondary: { main: "#9c27b0" },
   },
-  components: components,
 });
-
-export { lightTheme };

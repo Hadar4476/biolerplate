@@ -1,6 +1,18 @@
 import { useEffect } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
+
+import { ROUTE_NAMES } from "./types";
+
+import PublicRoute from "@/components/PublicRoute";
+import PrivateRoute from "@/components/PrivateRoute";
+
+import publicRoutes from "@/routes/public";
+import privateRoutes from "@/routes/private";
 
 import { ThemeContextProvider } from "@/context/ThemeContext";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,17 +23,6 @@ import useCheckLanguage from "./hooks/useCheckLanguage";
 import { useAppSelector } from "./store";
 import { systemActions, systemSelector } from "./store/reducers/system";
 
-import PrivateRoute from "@/components/PrivateRoute";
-import PublicRoute from "@/components/PublicRoute";
-
-import PublicLayout from "./layouts/PublicLayout";
-import PrivateLayout from "./layouts/PrivateLayout";
-
-import Login from "@/pages/auth/Login/Login";
-import Register from "@/pages/auth/Register/Register";
-
-import Dashboard from "@/pages/dashboard/Dashboard";
-import Posts from "@/pages/dashboard/Posts";
 import { useDispatch } from "react-redux";
 
 const App = () => {
@@ -48,29 +49,24 @@ const App = () => {
     return <div>loading...</div>;
   }
 
+  const router = createBrowserRouter([
+    {
+      path: ROUTE_NAMES.HOME,
+      element: <PublicRoute />, // Wrapper for public routes
+      children: publicRoutes,
+    },
+    {
+      path: ROUTE_NAMES.HOME,
+      element: <PrivateRoute />, // Wrapper for private routes
+      children: privateRoutes,
+    },
+    { path: "*", element: <Navigate to={ROUTE_NAMES.HOME} replace /> },
+  ]);
+
   return (
     <ThemeContextProvider>
       <CssBaseline />
-      <Routes>
-        {/* Public Routes */}
-        <Route element={<PublicRoute />}>
-          <Route element={<PublicLayout />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-        </Route>
-
-        {/* Private Routes */}
-        <Route element={<PrivateRoute />}>
-          <Route element={<PrivateLayout />}>
-            <Route path="/posts" element={<Posts />} />
-            <Route path="/" element={<Dashboard />} />
-          </Route>
-        </Route>
-
-        {/* Catch-All Route */}
-        <Route path="*" element={<h1>404 Not Found</h1>} />
-      </Routes>
+      <RouterProvider router={router} />
     </ThemeContextProvider>
   );
 };

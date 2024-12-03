@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
+import { ROUTE_NAMES } from "@/types";
+
 import { useAppSelector } from "@/store";
 import { authSelector } from "@/store/reducers/auth";
 import { systemSelector } from "@/store/reducers/system";
@@ -13,17 +15,17 @@ const PrivateRoute = () => {
 
   useEffect(() => {
     if (isAppLoaded && !isLoggedIn) {
-      navigate("/login", { replace: true });
+      navigate(ROUTE_NAMES.LOGIN, { replace: true });
     }
-  }, [isAppLoaded, isLoggedIn, navigate]);
+  }, [isAppLoaded, isLoggedIn]);
 
   // Render nothing until the app is loaded
-  if (!isAppLoaded) {
+  if (!isAppLoaded || !isLoggedIn) {
     return null;
   }
 
   // If not logged in, navigation will handle redirection
-  return isLoggedIn ? <Outlet /> : null;
+  return <Outlet />;
 };
 
 export default PrivateRoute;

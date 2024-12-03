@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
+import { ROUTE_NAMES } from "@/types";
+
 import { useAppSelector } from "@/store";
 import { authSelector } from "@/store/reducers/auth";
 import { systemSelector } from "@/store/reducers/system";
@@ -13,17 +15,17 @@ const PublicRoute = () => {
 
   useEffect(() => {
     if (isAppLoaded && isLoggedIn) {
-      navigate("/", { replace: true });
+      navigate(ROUTE_NAMES.DASHBOARD, { replace: true });
     }
   }, [isAppLoaded, isLoggedIn, navigate]);
 
   // Render nothing until the app is loaded
-  if (!isAppLoaded) {
+  if (!isAppLoaded || isLoggedIn) {
     return null;
   }
 
   // If logged in, navigation will handle redirection
-  return !isLoggedIn ? <Outlet /> : null;
+  return <Outlet />;
 };
 
 export default PublicRoute;

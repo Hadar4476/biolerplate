@@ -8,7 +8,7 @@ const useCheckLanguage = () => {
   const { i18n } = useTranslation();
 
   const checkLanguage = () => {
-    const language = localStorage.getItem("language");
+    const language = localStorage.getItem("language") ?? "en";
 
     if (language) {
       i18n.changeLanguage(language);

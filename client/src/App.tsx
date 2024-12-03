@@ -49,18 +49,26 @@ const App = () => {
     return <div>loading...</div>;
   }
 
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        path: ROUTE_NAMES.HOME,
+        element: <PublicRoute />, // Wrapper for public routes
+        children: publicRoutes,
+      },
+      {
+        path: ROUTE_NAMES.HOME,
+        element: <PrivateRoute />, // Wrapper for private routes
+        children: privateRoutes,
+      },
+    ],
     {
-      path: ROUTE_NAMES.HOME,
-      element: <PublicRoute />, // Wrapper for public routes
-      children: publicRoutes,
-    },
-    {
-      path: ROUTE_NAMES.HOME,
-      element: <PrivateRoute />, // Wrapper for private routes
-      children: privateRoutes,
-    },
-  ]);
+      future: {
+        v7_startTransition: true, // Opt-in to startTransition wrapping
+        v7_relativeSplatPath: true, // Opt-in to relative splat path resolution
+      },
+    }
+  );
 
   return (
     <ThemeContextProvider>

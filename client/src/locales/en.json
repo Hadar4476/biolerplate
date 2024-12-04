@@ -1,0 +1,10 @@
+{
+  "welcome": "Welcome to our application!",
+  "logout": "Log Out",
+  "system": {
+    "toggle_theme": "Toggle theme"
+  },
+  "showcase": {
+    "buttons": "Buttons"
+  }
+}

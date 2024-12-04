@@ -4,7 +4,7 @@ import { ThemeProvider, Theme } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "@/theme";
 
 interface ThemeContextProps {
-  toggleTheme: () => void;
+  onToggleTheme: () => void;
   mode: "light" | "dark";
 }
 
@@ -24,7 +24,7 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const storedMode = localStorage.getItem("theme") as "light" | "dark";
   const [mode, setMode] = useState<"light" | "dark">(storedMode || "light");
 
-  const toggleTheme = () => {
+  const onToggleTheme = () => {
     const newMode = mode === "light" ? "dark" : "light";
     setMode(newMode);
     localStorage.setItem("theme", newMode);
@@ -33,7 +33,7 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const theme: Theme = mode === "light" ? lightTheme : darkTheme;
 
   return (
-    <ThemeContext.Provider value={{ toggleTheme, mode }}>
+    <ThemeContext.Provider value={{ onToggleTheme, mode }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );

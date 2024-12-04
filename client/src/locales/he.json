@@ -1,0 +1,10 @@
+{
+  "welcome": "ברוכים הבאים",
+  "logout": "התנתק",
+  "system": {
+    "toggle_theme": "שנה מצב"
+  },
+  "showcase": {
+    "buttons": "כפתורים"
+  }
+}

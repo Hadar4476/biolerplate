@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { ROUTE_NAMES } from "./types";
 

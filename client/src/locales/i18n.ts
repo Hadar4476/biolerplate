@@ -2,8 +2,8 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 
-import enTranslations from "./en/translation.json";
-import heTranslations from "./he/translation.json";
+import enTranslations from "./en.json";
+import heTranslations from "./he.json";
 
 export const defaultNS = "translation";
 

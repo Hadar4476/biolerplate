@@ -52,5 +52,8 @@ export const darkTheme = createTheme({
       color: "#00c2c7",
     },
   },
+  typography: {
+    fontFamily: "DM Sans, sans-serif",
+  },
   components,
 });

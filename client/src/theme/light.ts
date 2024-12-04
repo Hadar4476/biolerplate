@@ -48,9 +48,23 @@ export const lightTheme = createTheme({
       secondary: "#736E6B",
     },
     button: {
-      backgroundColor: "#00c2c7",
-      color: "#262422",
+      contained: {
+        backgroundColor: "#00c2c7",
+        color: "#FCFCFA",
+      },
+      outlined: {
+        backgroundColor: "#FCFCFA",
+        color: "#00c2c7",
+        borderColor: "#00c2c7",
+      },
+      text: {
+        backgroundColor: "transparent",
+        color: "#262422",
+      },
     },
+  },
+  typography: {
+    fontFamily: "DM Sans, sans-serif",
   },
   components,
 });

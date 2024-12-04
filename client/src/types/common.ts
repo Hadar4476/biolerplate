@@ -1,12 +1,13 @@
 import { IAuthState } from "./user";
 
 export enum ROUTE_NAMES {
+  HOME = "/",
   LOGIN = "login",
   REGISTER = "register",
-  POSTS = "posts",
-  NOT_FOUND = "not-found",
   DASHBOARD = "dashboard",
-  HOME = "/",
+  POSTS = "posts",
+  SHOWCASE = "showcase",
+  NOT_FOUND = "not-found",
 }
 
 export interface IDocument {

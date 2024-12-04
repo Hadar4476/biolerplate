@@ -1,9 +1,56 @@
 import { createTheme } from "@mui/material/styles";
 
+import components from "./components";
+
+// COLORS
+
+// blue(light to dark):
+// #daf8e3
+// #97ebdb
+// #00c2c7
+// #0086ad
+// #005582
+
+// purple(light to dark):
+// #efbbff
+// #d896ff
+// #be29ec
+// #800080
+// #660066
+
+// white/grey/black(light-dark):
+// #FCFCFA
+// #EDECE9
+// #DEDCD8
+// #CFCCC8
+// #BFBCB8
+// #999591
+// #736E6B
+// #4D4946
+// #262422
+
 export const lightTheme = createTheme({
   palette: {
     mode: "light",
-    primary: { main: "#1976d2" },
-    secondary: { main: "#9c27b0" },
+    background: {
+      default: "#FCFCFA",
+    },
+    common: {
+      white: "#FCFCFA",
+      black: "#262422",
+    },
+    app_bar: {
+      backgroundColor: "#262422",
+    },
+    text: {
+      disabled: "#999591",
+      primary: "#262422",
+      secondary: "#736E6B",
+    },
+    button: {
+      backgroundColor: "#00c2c7",
+      color: "#262422",
+    },
   },
+  components,
 });

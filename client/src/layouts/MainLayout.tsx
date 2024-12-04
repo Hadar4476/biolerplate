@@ -1,24 +1,29 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Box } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, useTheme } from "@mui/material";
 
 const MainLayout = () => {
   const location = useLocation();
+
+  const theme = useTheme();
 
   // Get the current route name
 
   return (
     <Box className="min-h-screen w-full flex flex-col">
       {/* Header */}
-      <AppBar position="static" className="!bg-red-500">
+      <AppBar
+        position="static"
+        style={{ backgroundColor: theme.palette.app_bar?.backgroundColor }}
+      >
         <Toolbar>
-          <Typography variant="h6" className="text-white">
+          <Typography variant="h6">
             Current Route: {location.pathname}
           </Typography>
         </Toolbar>
       </AppBar>
 
       {/* Content */}
-      <main className="flex-grow mt-4">
+      <main className="flex-grow m-4">
         <Outlet />
       </main>
 

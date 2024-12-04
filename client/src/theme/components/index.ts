@@ -1,5 +1,9 @@
 import { Components, Theme } from "@mui/material";
 
-const components: Components<Theme> = {};
+import { MuiButton } from "./button";
+
+const components: Components<Theme> = {
+  MuiButton,
+};
 
 export default components;

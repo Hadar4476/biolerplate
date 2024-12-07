@@ -4,7 +4,9 @@
     "he": "עברית"
   },
   "common": {
-    "open": "פתח"
+    "open": "פתח",
+    "show": "הצג",
+    "close": "סגור"
   },
   "system": {
     "toggle_theme": "שנה מצב",
@@ -35,6 +37,9 @@
     },
     "drawer": {
       "title": "תפריט צד"
+    },
+    "toast": {
+      "title": "הודעה"
     }
   }
 }

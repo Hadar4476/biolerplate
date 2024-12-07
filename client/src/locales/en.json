@@ -4,7 +4,9 @@
     "he": "עברית"
   },
   "common": {
-    "open": "Open"
+    "open": "Open",
+    "show": "Show",
+    "close": "Close"
   },
   "system": {
     "toggle_theme": "Toggle theme",
@@ -35,6 +37,9 @@
     },
     "drawer": {
       "title": "Drawer"
+    },
+    "toast": {
+      "title": "Toast"
     }
   }
 }

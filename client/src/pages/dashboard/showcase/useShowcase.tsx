@@ -4,12 +4,14 @@ import ButtonShowcase from "@/components/showcase/ButtonShowcase";
 import TypographyShowcase from "@/components/showcase/TypographyShowcase";
 import ModalShowcase from "@/components/showcase/ModalShowcase";
 import DrawerShowcase from "@/components/showcase/DrawerShowcase";
+import ToastShowcase from "@/components/showcase/ToastShowcase";
 
 enum SHOWCASE_COMPONENT_TYPE {
   BUTTON = "button",
   TYPOGRAPHY = "typography",
   MODAL = "modal",
   DRAWER = "drawer",
+  TOAST = "toast",
 }
 
 const showcaseComponents = [
@@ -28,6 +30,10 @@ const showcaseComponents = [
   {
     type: SHOWCASE_COMPONENT_TYPE.DRAWER,
     component: DrawerShowcase,
+  },
+  {
+    type: SHOWCASE_COMPONENT_TYPE.TOAST,
+    component: ToastShowcase,
   },
 ];
 

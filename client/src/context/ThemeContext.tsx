@@ -12,14 +12,18 @@ const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const useThemeContext = (): ThemeContextProps => {
   const context = useContext(ThemeContext);
+
   if (!context) {
     throw new Error("useThemeContext must be used within ThemeContextProvider");
   }
+
   return context;
 };
 
-export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({
+export const ThemeContextProvider = ({
   children,
+}: {
+  children: React.ReactNode;
 }) => {
   const storedMode = localStorage.getItem("theme") as "light" | "dark";
   const [mode, setMode] = useState<"light" | "dark">(storedMode || "light");

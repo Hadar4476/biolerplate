@@ -9,3 +9,8 @@ body,
   padding: 0;
   width: 100%;
 }
+
+#toast-manager-root {
+  position: relative;
+  z-index: 1300;
+}

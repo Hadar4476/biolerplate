@@ -11,6 +11,7 @@ import publicRoutes from "@/routes/public";
 import privateRoutes from "@/routes/private";
 
 import { ThemeContextProvider } from "@/context/ThemeContext";
+import { ToastProvider } from "./context/ToastContext";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import useCheckAuth from "./hooks/useCheckAuth";
@@ -68,8 +69,10 @@ const App = () => {
 
   return (
     <ThemeContextProvider>
-      <CssBaseline />
-      <RouterProvider router={router} />
+      <ToastProvider>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </ToastProvider>
     </ThemeContextProvider>
   );
 };

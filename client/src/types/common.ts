@@ -29,3 +29,12 @@ export interface ISelectOption {
   label: string;
   icon?: keyof typeof icons;
 }
+
+export type ToastType = "info" | "success" | "warning" | "error";
+
+export interface IToast {
+  id: string;
+  message: string;
+  type: ToastType;
+  duration?: number;
+}

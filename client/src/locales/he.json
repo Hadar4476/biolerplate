@@ -3,6 +3,9 @@
     "en": "English",
     "he": "עברית"
   },
+  "common": {
+    "open": "פתח"
+  },
   "system": {
     "toggle_theme": "שנה מצב",
     "logout": "התנתק"
@@ -13,6 +16,7 @@
       "contained": "מלא",
       "outlined": "מתואר",
       "text": "טקסט",
+      "disabled": "לא נגיש",
       "small": "קטן",
       "medium": "בינוני",
       "large": "גדול"
@@ -27,8 +31,10 @@
       "extra_bold": "הדגש עז"
     },
     "modal": {
-      "title": "מודאל",
-      "open": "פתח"
+      "title": "מודאל"
+    },
+    "drawer": {
+      "title": "תפריט צד"
     }
   }
 }

@@ -35,7 +35,7 @@ const MainLayout = () => {
           >
             Current Route: {location.pathname}
           </Typography>
-          <Stack direction="row" alignItems="center" gap="24px">
+          <Stack direction="row" alignItems="center" gap="12px">
             <LanguageSelector />
             <Button size="small" onClick={onToggleTheme}>
               {t("system.toggle_theme")}

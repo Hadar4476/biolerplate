@@ -45,7 +45,7 @@ const LanguageSelector = () => {
       <MenuItem key={option.value} value={option.value}>
         <Stack direction="row" alignItems="center" gap="12px">
           {option?.icon && <AppIcon src={option.icon} />}
-          <Typography variant={isSelected ? "b_16" : "medium_16"}>
+          <Typography variant={isSelected ? "b_12" : "medium_12"}>
             {label}
           </Typography>
         </Stack>
@@ -55,8 +55,8 @@ const LanguageSelector = () => {
 
   return (
     <Select
-      sx={{ height: "32px" }}
       value={selectedLanguage}
+      size="small"
       onChange={(event) => onChangeLanguage(event.target.value)}
       fullWidth
       renderValue={(selectedValue) => {
@@ -71,7 +71,7 @@ const LanguageSelector = () => {
         return (
           <Stack direction="row" alignItems="center" gap="12px">
             {selectedOption?.icon && <AppIcon src={selectedOption.icon} />}
-            <Typography variant="b_16">{label}</Typography>
+            <Typography variant="b_12">{label}</Typography>
           </Stack>
         );
       }}

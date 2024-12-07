@@ -3,6 +3,9 @@
     "en": "English",
     "he": "עברית"
   },
+  "common": {
+    "open": "Open"
+  },
   "system": {
     "toggle_theme": "Toggle theme",
     "logout": "Log Out"
@@ -13,6 +16,7 @@
       "contained": "Contained",
       "outlined": "Outlined",
       "text": "Text",
+      "disabled": "Disabled",
       "small": "Small",
       "medium": "Medium",
       "large": "Large"
@@ -27,8 +31,10 @@
       "extra_bold": "Extra Bold"
     },
     "modal": {
-      "title": "Modal",
-      "open": "Open"
+      "title": "Modal"
+    },
+    "drawer": {
+      "title": "Drawer"
     }
   }
 }

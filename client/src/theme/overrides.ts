@@ -1,5 +1,6 @@
 import { PaletteOptions } from "@mui/material/styles";
 import { TypeText } from "@mui/material/styles";
+import { InputBasePropsSizeOverrides } from "@mui/material";
 
 interface BasePalette {
   app_bar?: {
@@ -25,10 +26,21 @@ interface BasePalette {
       backgroundColor?: string;
       color?: string;
     };
+    disabled: {
+      backgroundColor?: string;
+      color?: string;
+    };
   };
   modal: {
     backgroundColor?: string;
   };
+}
+
+// Extend the size property to include 'large'
+declare module "@mui/material/InputBase" {
+  interface InputBasePropsSizeOverrides {
+    large: true;
+  }
 }
 
 declare module "@mui/material/Typography" {

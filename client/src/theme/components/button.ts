@@ -12,7 +12,8 @@ export const MuiButton: {
   },
   styleOverrides: {
     root: ({ theme, ownerState }) => {
-      const { contained, outlined, text } = theme.palette.button ?? {};
+      const { contained, outlined, text, disabled } =
+        theme.palette.button ?? {};
 
       const size = ownerState?.size || defaultSize;
 
@@ -61,6 +62,11 @@ export const MuiButton: {
           "&:hover": {
             color: contained?.backgroundColor,
           },
+        },
+
+        "&.Mui-disabled": {
+          backgroundColor: disabled?.backgroundColor,
+          color: disabled?.color,
         },
       };
     },

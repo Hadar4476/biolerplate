@@ -24,10 +24,10 @@ const useCheckAuth = () => {
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
 
-    if (hasExpired) {
-      logout();
-      return;
-    }
+    // if (hasExpired) {
+    //   logout();
+    //   return;
+    // }
 
     await onGetUser();
 

@@ -63,6 +63,10 @@ export const lightTheme = createTheme({
         backgroundColor: "transparent",
         color: "#262422",
       },
+      disabled: {
+        backgroundColor: "#BFBCB8",
+        color: "#736E6B",
+      },
     },
     modal: {
       backgroundColor: "#FCFCFA",

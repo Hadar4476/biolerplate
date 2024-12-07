@@ -63,6 +63,10 @@ export const darkTheme = createTheme({
         backgroundColor: "transparent",
         color: "#FCFCFA",
       },
+      disabled: {
+        backgroundColor: "#BFBCB8",
+        color: "#736E6B",
+      },
     },
     modal: {
       backgroundColor: "#262422",

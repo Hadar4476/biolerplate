@@ -13,7 +13,7 @@ const ToastShowcase = () => {
     const toast: Omit<IToast, "id"> = {
       message: "Operation successful!",
       type: "success",
-      duration: 30000,
+      duration: 5000,
     };
 
     showToast(toast);

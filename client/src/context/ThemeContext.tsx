@@ -30,6 +30,7 @@ export const ThemeContextProvider = ({
 
   const onToggleTheme = () => {
     const newMode = mode === "light" ? "dark" : "light";
+
     setMode(newMode);
     localStorage.setItem("theme", newMode);
   };

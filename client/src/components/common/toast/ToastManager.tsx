@@ -2,44 +2,31 @@ import ReactDOM from "react-dom";
 
 import AppToast from "./AppToast";
 
-import { ToastType } from "@/types";
+import { IToast } from "@/types";
 import { Stack } from "@mui/material";
 
 interface ToastManagerProps {
-  toasts: {
-    id: string;
-    message: string;
-    type: ToastType;
-    duration?: number;
-  }[];
+  toasts: IToast[];
   onRemove: (id: string) => void;
 }
 
 const ToastManager = ({ toasts, onRemove }: ToastManagerProps) => {
   const toastRoot = document.getElementById("toast-manager-root");
 
+  const toastElements = toasts.map((toast, index) => (
+    <AppToast
+      key={toast.id}
+      message={toast.message}
+      type={toast.type}
+      duration={toast.duration}
+      positionOffset={index * 60}
+      onClose={() => onRemove(toast.id)}
+    />
+  ));
+
   return ReactDOM.createPortal(
-    <Stack
-      sx={{
-        position: "fixed",
-        top: 16,
-        right: 16,
-        display: "flex",
-        flexDirection: "column",
-        gap: 8,
-        zIndex: 1400,
-      }}
-    >
-      {toasts.map((toast) => (
-        <AppToast
-          key={toast.id}
-          message={toast.message}
-          type={toast.type}
-          duration={toast.duration}
-          onClose={() => onRemove(toast.id)}
-        />
-      ))}
-    </Stack>,
+    // <Stack position="fixed" top="16px" bottom="16px" left="16px" right="16px">
+    <Stack>{toastElements}</Stack>,
     toastRoot!
   );
 };

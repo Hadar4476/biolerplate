@@ -7,21 +7,29 @@ interface ToastProps {
   message: string;
   type: ToastType;
   duration?: number; // in milliseconds
+  positionOffset: number;
   onClose: () => void;
 }
 
-const Toast = ({ message, type, duration = 5000, onClose }: ToastProps) => {
+const AppToast = ({
+  message,
+  type,
+  duration = 5000,
+  positionOffset,
+  onClose,
+}: ToastProps) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const interval = duration / 100;
 
+    let timeout: NodeJS.Timeout | null = null;
+
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          onClose();
-
+          timeout = setTimeout(onClose, 1000);
           return 100;
         }
 
@@ -29,24 +37,29 @@ const Toast = ({ message, type, duration = 5000, onClose }: ToastProps) => {
       });
     }, interval);
 
-    return () => clearInterval(timer);
-  }, [duration, onClose]);
+    return () => {
+      clearInterval(timer);
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [duration]);
 
   return (
     <Snackbar
       open
+      sx={{
+        zIndex: 10001,
+        transform: `translate(-50%, -${positionOffset}px) !important`,
+        height: "fit-content",
+      }}
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       autoHideDuration={duration}
-      onClose={onClose}
     >
       <Box>
-        <Alert severity={type} onClose={onClose}>
-          {message}
-        </Alert>
+        <Alert severity={type}>{message}</Alert>
         <LinearProgress variant="determinate" value={progress} />
       </Box>
     </Snackbar>
   );
 };
 
-export default Toast;
+export default AppToast;

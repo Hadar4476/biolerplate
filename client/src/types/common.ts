@@ -1,3 +1,4 @@
+import { icons } from "@/theme";
 import { IAuthState } from "./user";
 
 export enum ROUTE_NAMES {
@@ -21,4 +22,10 @@ export interface ISystemState {
 export interface IRootState {
   auth: IAuthState;
   system: ISystemState;
+}
+
+export interface ISelectOption {
+  value: string;
+  label: string;
+  icon?: keyof typeof icons;
 }

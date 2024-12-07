@@ -1,12 +1,26 @@
 import useTrans from "@/hooks/useTrans";
 import { useTranslation } from "react-i18next";
+import { TranslationKeys } from "@/locales/i18n";
+import { languages } from "@/common";
 
 import { useDispatch } from "react-redux";
 
 import { useAppSelector } from "@/store";
 import { systemActions, systemSelector } from "@/store/reducers/system";
 
-import commonUtils from "@/utils/common";
+import { icons } from "@/theme";
+
+import { ISelectOption } from "@/types";
+import { MenuItem, Select, Stack, Typography } from "@mui/material";
+import { AppIcon } from "./common/AppIcon";
+
+const options: ISelectOption[] = languages.map((language) => {
+  return {
+    label: language,
+    value: language,
+    icon: language as keyof typeof icons,
+  };
+});
 
 const LanguageSelector = () => {
   const t = useTrans();
@@ -14,23 +28,56 @@ const LanguageSelector = () => {
 
   const dispatch = useDispatch();
 
-  const {} = useAppSelector(systemSelector);
+  const { language: selectedLanguage } = useAppSelector(systemSelector);
 
-  const changeLanguage = (lng: string) => {
-    const isRTL = commonUtils.isRTL(lng);
-
-    document.body.setAttribute("dir", isRTL ? "rtl" : "ltr");
-
-    i18n.changeLanguage(lng);
-    dispatch(systemActions.setLanguage(lng));
-    localStorage.setItem("language", lng);
+  const onChangeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+    dispatch(systemActions.setLanguage(language));
+    localStorage.setItem("language", language);
   };
 
+  const optionElements = options.map((option) => {
+    const isSelected = option.value === selectedLanguage;
+
+    const label = t(`languages.${option.label}` as TranslationKeys);
+
+    return (
+      <MenuItem key={option.value} value={option.value}>
+        <Stack direction="row" alignItems="center" gap="12px">
+          {option?.icon && <AppIcon src={option.icon} />}
+          <Typography variant={isSelected ? "b_16" : "medium_16"}>
+            {label}
+          </Typography>
+        </Stack>
+      </MenuItem>
+    );
+  });
+
   return (
-    <div>
-      <button onClick={() => changeLanguage("en")}>English</button>
-      <button onClick={() => changeLanguage("he")}>עברית</button>
-    </div>
+    <Select
+      sx={{ height: "32px" }}
+      value={selectedLanguage}
+      onChange={(event) => onChangeLanguage(event.target.value)}
+      fullWidth
+      renderValue={(selectedValue) => {
+        const selectedOption = options.find(
+          (option) => option.value === selectedValue
+        );
+
+        const label = t(
+          `languages.${selectedOption?.label}` as TranslationKeys
+        );
+
+        return (
+          <Stack direction="row" alignItems="center" gap="12px">
+            {selectedOption?.icon && <AppIcon src={selectedOption.icon} />}
+            <Typography variant="b_16">{label}</Typography>
+          </Stack>
+        );
+      }}
+    >
+      {optionElements}
+    </Select>
   );
 };
 

@@ -1,4 +1,8 @@
 {
+  "languages": {
+    "en": "English",
+    "he": "עברית"
+  },
   "system": {
     "toggle_theme": "Toggle theme",
     "logout": "Log Out"

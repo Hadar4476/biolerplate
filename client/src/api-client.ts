@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const apiUrl = import.meta.env.VITE_API_URL;
+import appConfig from "./config";
 
 const apiClient = axios.create({
-  baseURL: apiUrl,
+  baseURL: appConfig.apiUrl,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

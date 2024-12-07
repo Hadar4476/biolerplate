@@ -26,6 +26,7 @@ export const MuiButton: {
       return {
         height,
         width,
+        minWidth: "fit-content",
         fontSize,
         fontWeight: 600,
         borderRadius: "8px",

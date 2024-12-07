@@ -1,5 +1,8 @@
-import { ISystemState, IRootState } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { ISystemState, IRootState } from "@/types";
+
+import commonUtils from "@/utils/common";
 
 const defaultSystemState: ISystemState = {
   isAppLoaded: false,
@@ -14,6 +17,12 @@ const system = createSlice({
       state.isAppLoaded = action.payload;
     },
     setLanguage: (state, action: PayloadAction<string>) => {
+      const language = action.payload;
+
+      const isRTL = commonUtils.isRTL(language);
+
+      document.body.setAttribute("dir", isRTL ? "rtl" : "ltr");
+
       state.language = action.payload;
     },
   },

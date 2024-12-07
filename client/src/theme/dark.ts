@@ -42,7 +42,7 @@ export const darkTheme = createTheme({
       black: "#262422",
     },
     app_bar: {
-      backgroundColor: "#FCFCFA",
+      backgroundColor: "#262422",
     },
     text: {
       disabled: "#999591",

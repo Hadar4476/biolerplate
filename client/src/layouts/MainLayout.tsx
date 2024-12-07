@@ -26,12 +26,12 @@ const MainLayout = () => {
 
   return (
     <Box className="min-h-screen w-full flex flex-col">
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <Typography
             className="flex-1"
             variant="h6"
-            style={{ color: theme.palette.text?.secondary }}
+            style={{ color: theme.palette.text?.primary }}
           >
             Current Route: {location.pathname}
           </Typography>

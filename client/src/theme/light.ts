@@ -42,7 +42,7 @@ export const lightTheme = createTheme({
       black: "#262422",
     },
     app_bar: {
-      backgroundColor: "#262422",
+      backgroundColor: "#FCFCFA",
     },
     text: {
       disabled: "#999591",

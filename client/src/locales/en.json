@@ -1,10 +1,30 @@
 {
-  "welcome": "Welcome to our application!",
-  "logout": "Log Out",
   "system": {
-    "toggle_theme": "Toggle theme"
+    "toggle_theme": "Toggle theme",
+    "logout": "Log Out"
   },
   "showcase": {
-    "buttons": "Buttons"
+    "button": {
+      "title": "Button",
+      "contained": "Contained",
+      "outlined": "Outlined",
+      "text": "Text",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large"
+    },
+    "typography": {
+      "title": "Typography",
+      "text_size": "Text size of {{size}}px",
+      "regular": "Regular",
+      "medium": "Medium",
+      "semi_bold": "Semi-Bold",
+      "bold": "Bold",
+      "extra_bold": "Extra Bold"
+    },
+    "modal": {
+      "title": "Modal",
+      "open": "Open"
+    }
   }
 }

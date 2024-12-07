@@ -1,5 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
+import typography from "./typography";
+
 import components from "./components";
 
 // COLORS
@@ -48,11 +50,26 @@ export const darkTheme = createTheme({
       secondary: "#CFCCC8",
     },
     button: {
-      backgroundColor: "#FCFCFA",
-      color: "#00c2c7",
+      contained: {
+        backgroundColor: "#FCFCFA",
+        color: "#00c2c7",
+      },
+      outlined: {
+        backgroundColor: "#FCFCFA",
+        color: "#00c2c7",
+        borderColor: "#00c2c7",
+      },
+      text: {
+        backgroundColor: "transparent",
+        color: "#FCFCFA",
+      },
+    },
+    modal: {
+      backgroundColor: "#262422",
     },
   },
   typography: {
+    ...typography,
     fontFamily: "DM Sans, sans-serif",
   },
   components,

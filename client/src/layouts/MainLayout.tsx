@@ -26,7 +26,6 @@ const MainLayout = () => {
 
   return (
     <Box className="min-h-screen w-full flex flex-col">
-      {/* Header */}
       <AppBar position="static">
         <Toolbar>
           <Typography
@@ -36,28 +35,21 @@ const MainLayout = () => {
           >
             Current Route: {location.pathname}
           </Typography>
-          <Stack direction="row" alignItems="center" gap="4px">
+          <Stack direction="row" alignItems="center" gap="24px">
             <LanguageSelector />
-            <Button onClick={onToggleTheme}>{t("system.toggle_theme")}</Button>
-            <Button onClick={logout}>{t("logout")}</Button>
+            <Button size="small" onClick={onToggleTheme}>
+              {t("system.toggle_theme")}
+            </Button>
+            <Button size="small" onClick={logout}>
+              {t("system.logout")}
+            </Button>
           </Stack>
         </Toolbar>
       </AppBar>
 
-      {/* Content */}
       <main className="flex-grow m-4">
         <Outlet />
       </main>
-
-      {/* Footer */}
-      <Box
-        component="footer"
-        className="bg-gray-800 text-white py-4 text-center"
-      >
-        <Typography variant="body2">
-          &copy; {new Date().getFullYear()} My Application. All rights reserved.
-        </Typography>
-      </Box>
     </Box>
   );
 };

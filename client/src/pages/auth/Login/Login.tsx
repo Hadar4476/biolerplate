@@ -45,6 +45,7 @@ const Login = () => {
           color="primary"
           fullWidth
           type="submit"
+          className="!w-full"
           disabled={isPending}
         >
           {isPending ? "Logging in..." : "Login"}

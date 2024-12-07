@@ -1,30 +1,34 @@
 import { ButtonProps, ComponentsOverrides, Theme } from "@mui/material";
 
+const defaultSize = "medium";
+
 export const MuiButton: {
   defaultProps?: Partial<ButtonProps>;
   styleOverrides?: ComponentsOverrides<Theme>["MuiButton"];
 } = {
   defaultProps: {
     variant: "contained",
-    size: "small",
+    size: defaultSize,
   },
   styleOverrides: {
     root: ({ theme, ownerState }) => {
       const { contained, outlined, text } = theme.palette.button ?? {};
 
-      const size = ownerState?.size || "medium";
-      const height =
-        size === "small" ? "20px" : size === "medium" ? "30px" : "40px";
+      const size = ownerState?.size || defaultSize;
 
-      const fontSizeFactor =
-        size === "small" ? 0.25 : size === "medium" ? 0.5 : 1;
+      const height =
+        size === "small" ? "32px" : size === "medium" ? "40px" : "48px";
+      const width = ownerState.fullWidth ? "100%" : "fit-content";
+
+      const remSize = size === "small" ? 0.8 : size === "medium" ? 1 : 1.25;
+      const fontSize = `${remSize}rem`;
 
       return {
         height,
-        width: "fit-content",
-        fontSize: `${fontSizeFactor}rem`,
+        width,
+        fontSize,
         fontWeight: 600,
-        borderRadius: "32px",
+        borderRadius: "8px",
         textTransform: "none",
 
         "&.MuiButton-contained": {

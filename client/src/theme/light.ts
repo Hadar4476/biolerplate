@@ -1,5 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
+import typography from "./typography";
+
 import components from "./components";
 
 // COLORS
@@ -62,8 +64,12 @@ export const lightTheme = createTheme({
         color: "#262422",
       },
     },
+    modal: {
+      backgroundColor: "#FCFCFA",
+    },
   },
   typography: {
+    ...typography,
     fontFamily: "DM Sans, sans-serif",
   },
   components,

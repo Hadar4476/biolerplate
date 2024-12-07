@@ -30,7 +30,9 @@ const useCheckAuth = () => {
     }
 
     await onGetUser();
-    onAutoLogout(remainingMilliseconds);
+
+    // // uncomment to start auto logout
+    // onAutoLogout(remainingMilliseconds);
   };
 
   const onAutoLogout = (milliseconds: number) => {

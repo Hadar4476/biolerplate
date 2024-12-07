@@ -1,10 +1,30 @@
 {
-  "welcome": "ברוכים הבאים",
-  "logout": "התנתק",
   "system": {
-    "toggle_theme": "שנה מצב"
+    "toggle_theme": "שנה מצב",
+    "logout": "התנתק"
   },
   "showcase": {
-    "buttons": "כפתורים"
+    "button": {
+      "title": "כפתור",
+      "contained": "מלא",
+      "outlined": "מתואר",
+      "text": "טקסט",
+      "small": "קטן",
+      "medium": "בינוני",
+      "large": "גדול"
+    },
+    "typography": {
+      "title": "טיפוגרפיה",
+      "text_size": "טקסט בגודל של {{size}} פיקסלים",
+      "regular": "רגיל",
+      "medium": "בינוני",
+      "semi_bold": "הדגש חלקי",
+      "bold": "הדגש מלא",
+      "extra_bold": "הדגש עז"
+    },
+    "modal": {
+      "title": "מודאל",
+      "open": "פתח"
+    }
   }
 }

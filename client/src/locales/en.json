@@ -25,7 +25,7 @@
     },
     "typography": {
       "title": "Typography",
-      "text_size": "Text size of {{size}}px",
+      "text_sample": "Text size of {{size}}px",
       "regular": "Regular",
       "medium": "Medium",
       "semi_bold": "Semi-Bold",
@@ -39,7 +39,15 @@
       "title": "Drawer"
     },
     "toast": {
-      "title": "Toast"
+      "title": "Toast",
+      "info": "Info",
+      "warning": "Warning",
+      "success": "Success",
+      "error": "Error",
+      "message_sample": "This is toast of type: {{type}}"
+    },
+    "grid": {
+      "title": "Grid"
     }
   }
 }

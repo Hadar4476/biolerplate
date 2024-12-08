@@ -4,31 +4,31 @@ import { Divider, Stack, Typography } from "@mui/material";
 const TypographyShowcase = () => {
   const t = useTrans();
 
-  const text_size_10 = t("showcase.typography.text_size", {
+  const text_size_10 = t("showcase.typography.text_sample", {
     size: 10,
   });
-  const text_size_12 = t("showcase.typography.text_size", {
+  const text_size_12 = t("showcase.typography.text_sample", {
     size: 12,
   });
-  const text_size_14 = t("showcase.typography.text_size", {
+  const text_size_14 = t("showcase.typography.text_sample", {
     size: 14,
   });
-  const text_size_16 = t("showcase.typography.text_size", {
+  const text_size_16 = t("showcase.typography.text_sample", {
     size: 16,
   });
-  const text_size_18 = t("showcase.typography.text_size", {
+  const text_size_18 = t("showcase.typography.text_sample", {
     size: 18,
   });
-  const text_size_20 = t("showcase.typography.text_size", {
+  const text_size_20 = t("showcase.typography.text_sample", {
     size: 20,
   });
-  const text_size_22 = t("showcase.typography.text_size", {
+  const text_size_22 = t("showcase.typography.text_sample", {
     size: 22,
   });
-  const text_size_24 = t("showcase.typography.text_size", {
+  const text_size_24 = t("showcase.typography.text_sample", {
     size: 24,
   });
-  const text_size_38 = t("showcase.typography.text_size", {
+  const text_size_38 = t("showcase.typography.text_sample", {
     size: 38,
   });
 

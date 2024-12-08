@@ -35,15 +35,15 @@ const useCheckAuth = () => {
     // onAutoLogout(remainingMilliseconds);
   };
 
-  const onAutoLogout = (milliseconds: number) => {
-    if (timeoutIdRef.current) {
-      clearTimeout(timeoutIdRef.current);
-    }
+  // const onAutoLogout = (milliseconds: number) => {
+  //   if (timeoutIdRef.current) {
+  //     clearTimeout(timeoutIdRef.current);
+  //   }
 
-    timeoutIdRef.current = setTimeout(() => {
-      logout();
-    }, milliseconds);
-  };
+  //   timeoutIdRef.current = setTimeout(() => {
+  //     logout();
+  //   }, milliseconds);
+  // };
 
   const onGetUser = async () => {
     const userId = localStorage.getItem("userId");

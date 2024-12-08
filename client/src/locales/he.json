@@ -25,7 +25,7 @@
     },
     "typography": {
       "title": "טיפוגרפיה",
-      "text_size": "טקסט בגודל של {{size}} פיקסלים",
+      "text_sample": "טקסט בגודל של {{size}} פיקסלים",
       "regular": "רגיל",
       "medium": "בינוני",
       "semi_bold": "הדגש חלקי",
@@ -39,7 +39,15 @@
       "title": "תפריט צד"
     },
     "toast": {
-      "title": "הודעה"
+      "title": "הודעה",
+      "info": "מידע",
+      "warning": "אזהרה",
+      "success": "הצלחה",
+      "error": "שגיאה",
+      "message_sample": "זוהי הודעה מסוג {{type}}"
+    },
+    "grid": {
+      "title": "גריד"
     }
   }
 }

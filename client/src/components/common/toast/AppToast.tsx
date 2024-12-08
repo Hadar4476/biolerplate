@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Snackbar, Alert, LinearProgress, Box } from "@mui/material";
+import { Snackbar, Alert, LinearProgress, Box, Grow } from "@mui/material";
 
 import { ToastType } from "@/types";
 
@@ -18,7 +18,7 @@ const AppToast = ({
   positionOffset,
   onClose,
 }: ToastProps) => {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(100);
 
   useEffect(() => {
     const interval = duration / 100;
@@ -27,13 +27,13 @@ const AppToast = ({
 
     const timer = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
+        if (prev <= 0) {
           clearInterval(timer);
-          timeout = setTimeout(onClose, 1000);
-          return 100;
+          timeout = setTimeout(onClose, 800);
+          return 0;
         }
 
-        return prev + 1;
+        return prev - 1;
       });
     }, interval);
 
@@ -53,6 +53,7 @@ const AppToast = ({
       }}
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       autoHideDuration={duration}
+      TransitionComponent={Grow}
     >
       <Box>
         <Alert severity={type}>{message}</Alert>

@@ -23,7 +23,12 @@ const PaginationShowcase = () => {
     >
       <div className="flex-1 w-full grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {currentData.map((item, index) => (
-          <Stack key={index} className="bg-blue-200 p-4 text-center rounded-md">
+          <Stack
+            key={index}
+            alignItems="center"
+            justifyContent="center"
+            className="p-4 rounded-md bg-blue-200"
+          >
             {item}
           </Stack>
         ))}

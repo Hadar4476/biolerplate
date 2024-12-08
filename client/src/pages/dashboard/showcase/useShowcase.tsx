@@ -7,6 +7,7 @@ import DrawerShowcase from "@/components/showcase/DrawerShowcase";
 import ToastShowcase from "@/components/showcase/ToastShowcase";
 import GridShowcase from "@/components/showcase/GridShowcase";
 import PaginationShowcase from "@/components/showcase/PaginationShowcase";
+import LoadMoreShowcase from "@/components/showcase/LoadMoreShowcase";
 
 enum SHOWCASE_COMPONENT_TYPE {
   BUTTON = "button",
@@ -16,6 +17,7 @@ enum SHOWCASE_COMPONENT_TYPE {
   TOAST = "toast",
   GRID = "grid",
   PAGINATION = "pagination",
+  LOAD_MORE = "load_more",
 }
 
 const showcaseComponents = [
@@ -46,6 +48,10 @@ const showcaseComponents = [
   {
     type: SHOWCASE_COMPONENT_TYPE.PAGINATION,
     component: PaginationShowcase,
+  },
+  {
+    type: SHOWCASE_COMPONENT_TYPE.LOAD_MORE,
+    component: LoadMoreShowcase,
   },
 ];
 

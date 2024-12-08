@@ -51,6 +51,9 @@
     },
     "pagination": {
       "title": "עימוד"
+    },
+    "load_more": {
+      "title": "טען עוד"
     }
   }
 }

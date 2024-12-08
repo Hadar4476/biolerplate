@@ -14,7 +14,7 @@ const useLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
-    // localStorage.removeItem("language");
+    localStorage.removeItem("language");
 
     const authState: IAuthState = {
       isLoggedIn: false,

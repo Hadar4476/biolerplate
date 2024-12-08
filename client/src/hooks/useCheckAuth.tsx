@@ -24,26 +24,25 @@ const useCheckAuth = () => {
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
 
-    // if (hasExpired) {
-    //   logout();
-    //   return;
-    // }
+    if (hasExpired) {
+      logout();
+      return;
+    }
 
     await onGetUser();
 
-    // // uncomment to start auto logout
-    // onAutoLogout(remainingMilliseconds);
+    onAutoLogout(remainingMilliseconds);
   };
 
-  // const onAutoLogout = (milliseconds: number) => {
-  //   if (timeoutIdRef.current) {
-  //     clearTimeout(timeoutIdRef.current);
-  //   }
+  const onAutoLogout = (milliseconds: number) => {
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
+    }
 
-  //   timeoutIdRef.current = setTimeout(() => {
-  //     logout();
-  //   }, milliseconds);
-  // };
+    timeoutIdRef.current = setTimeout(() => {
+      logout();
+    }, milliseconds);
+  };
 
   const onGetUser = async () => {
     const userId = localStorage.getItem("userId");

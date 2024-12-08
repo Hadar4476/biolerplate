@@ -14,6 +14,7 @@ const Login = () => {
           label="Email"
           name="email"
           variant="outlined"
+          type="email"
           fullWidth
           className="mb-4"
           value={formik.values.email}

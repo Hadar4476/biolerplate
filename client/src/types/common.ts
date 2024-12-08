@@ -39,3 +39,12 @@ export interface IToast {
   type: ToastType;
   duration?: number;
 }
+
+export type AppTextFieldType =
+  | "text"
+  | "password"
+  | "email"
+  | "number"
+  | "tel"
+  | "url"
+  | "search";

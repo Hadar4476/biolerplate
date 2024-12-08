@@ -26,6 +26,7 @@ const Register = () => {
         <TextField
           label="Email"
           name="email"
+          type="email"
           variant="outlined"
           fullWidth
           className="mb-4"

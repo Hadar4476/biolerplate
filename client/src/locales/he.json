@@ -54,6 +54,9 @@
     },
     "load_more": {
       "title": "טען עוד"
+    },
+    "text_field": {
+      "title": "שדה טקסט"
     }
   }
 }

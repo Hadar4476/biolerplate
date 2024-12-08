@@ -54,6 +54,9 @@
     },
     "load_more": {
       "title": "Load More"
+    },
+    "text_field": {
+      "title": "Text Field"
     }
   }
 }

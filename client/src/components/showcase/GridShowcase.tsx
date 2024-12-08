@@ -1,10 +1,17 @@
+import { Stack } from "@mui/material";
+
 const GridShowcase = () => {
   return (
-    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="flex-1 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {Array.from({ length: 12 }, (_, index) => (
-        <div key={index} className="bg-blue-200 p-4 text-center rounded-md">
+        <Stack
+          key={index}
+          alignItems="center"
+          justifyContent="center"
+          className="p-4 rounded-md bg-blue-200"
+        >
           Item {index + 1}
-        </div>
+        </Stack>
       ))}
     </div>
   );

@@ -33,8 +33,7 @@ const TypographyShowcase = () => {
   });
 
   return (
-    <Stack gap="24px">
-      <Typography variant="b_38">{t("showcase.typography.title")}</Typography>
+    <>
       <Stack gap="12px">
         <Typography variant="b_24">
           {t("showcase.typography.regular")}
@@ -117,7 +116,7 @@ const TypographyShowcase = () => {
           <Typography variant="eb_38">{text_size_38}</Typography>
         </Stack>
       </Stack>
-    </Stack>
+    </>
   );
 };
 

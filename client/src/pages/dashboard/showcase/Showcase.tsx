@@ -1,7 +1,7 @@
 import useShowcase from "./useShowcase";
 import useTrans from "@/hooks/useTrans";
 
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 
 import { TranslationKeys } from "@/locales/i18n";
 
@@ -32,10 +32,13 @@ const Showcase = () => {
   });
 
   return (
-    <Stack gap="32px">
+    <Stack gap="24px" flex={1}>
       <Stack direction="row" alignItems="center" gap="12px">
         {options}
       </Stack>
+      <Typography variant="b_38">
+        {t(`showcase.${currentType}.title`)}
+      </Typography>
       {CurrentComponent ? <CurrentComponent /> : null}
     </Stack>
   );

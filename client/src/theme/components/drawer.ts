@@ -1,3 +1,4 @@
+import { zIndex } from "@/common";
 import { ComponentsOverrides, Theme } from "@mui/material";
 
 export const MuiDrawer: {
@@ -6,7 +7,7 @@ export const MuiDrawer: {
   styleOverrides: {
     root: ({}) => {
       return {
-        zIndex: 10001,
+        zIndex: zIndex.primary,
 
         ">.MuiDrawer-paper": {
           width: "100%",

@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 
 import useTrans from "@/hooks/useTrans";
 
@@ -21,22 +21,19 @@ const ToastShowcase = () => {
   };
 
   return (
-    <Stack>
-      <Typography variant="b_38">{t("showcase.toast.title")}</Typography>
-      <Stack direction="row" gap="12px">
-        <Button size="medium" onClick={() => onShowToast("info")}>
-          {t("showcase.toast.info")}
-        </Button>
-        <Button size="medium" onClick={() => onShowToast("warning")}>
-          {t("showcase.toast.warning")}
-        </Button>
-        <Button size="medium" onClick={() => onShowToast("success")}>
-          {t("showcase.toast.success")}
-        </Button>
-        <Button size="medium" onClick={() => onShowToast("error")}>
-          {t("showcase.toast.error")}
-        </Button>
-      </Stack>
+    <Stack direction="row" gap="12px">
+      <Button size="medium" onClick={() => onShowToast("info")}>
+        {t("showcase.toast.info")}
+      </Button>
+      <Button size="medium" onClick={() => onShowToast("warning")}>
+        {t("showcase.toast.warning")}
+      </Button>
+      <Button size="medium" onClick={() => onShowToast("success")}>
+        {t("showcase.toast.success")}
+      </Button>
+      <Button size="medium" onClick={() => onShowToast("error")}>
+        {t("showcase.toast.error")}
+      </Button>
     </Stack>
   );
 };

@@ -48,6 +48,9 @@
     },
     "grid": {
       "title": "Grid"
+    },
+    "pagination": {
+      "title": "Pagination"
     }
   }
 }

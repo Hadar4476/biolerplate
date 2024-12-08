@@ -5,8 +5,7 @@ const ButtonShowcase = () => {
   const t = useTrans();
 
   return (
-    <Stack gap="24px">
-      <Typography variant="b_38">{t("showcase.button.title")}</Typography>
+    <>
       <Stack gap="12px">
         <Typography variant="b_24">{t("showcase.button.contained")}</Typography>
         <Stack direction="row" alignItems="center" gap="12px">
@@ -63,7 +62,7 @@ const ButtonShowcase = () => {
           </Button>
         </Stack>
       </Stack>
-    </Stack>
+    </>
   );
 };
 

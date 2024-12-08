@@ -1,5 +1,6 @@
 import { icons } from "@/theme";
 import { IAuthState } from "./user";
+import React from "react";
 
 export enum ROUTE_NAMES {
   HOME = "/",

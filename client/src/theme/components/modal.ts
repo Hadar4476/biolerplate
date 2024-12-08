@@ -1,3 +1,4 @@
+import { zIndex } from "@/common";
 import { ComponentsOverrides, Theme } from "@mui/material";
 
 export const MuiModal: {
@@ -6,10 +7,10 @@ export const MuiModal: {
   styleOverrides: {
     root: ({ theme }) => {
       return {
-        zIndex: 10000,
+        zIndex: zIndex.secondary,
 
         "&.MuiModal-root:not(.MuiPopover-root):not(.MuiMenu-root)": {
-          zIndex: 10000,
+          zIndex: zIndex.secondary,
         },
 
         ">.MuiStack-root": {
@@ -20,7 +21,7 @@ export const MuiModal: {
           borderRadius: "10px",
           overflow: "hidden",
           background: theme.palette.modal.backgroundColor,
-          zIndex: 10001,
+          zIndex: zIndex.primary,
         },
       };
     },

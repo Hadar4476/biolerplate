@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Snackbar, Alert, LinearProgress, Box, Grow } from "@mui/material";
 
 import { ToastType } from "@/types";
+import { zIndex } from "@/common";
 
 interface ToastProps {
   message: string;
@@ -47,7 +48,7 @@ const AppToast = ({
     <Snackbar
       open
       sx={{
-        zIndex: 10001,
+        zIndex: zIndex.primary,
         transform: `translate(-50%, -${positionOffset}px) !important`,
         height: "fit-content",
       }}
@@ -55,7 +56,7 @@ const AppToast = ({
       autoHideDuration={duration}
       TransitionComponent={Grow}
     >
-      <Box>
+      <Box sx={{ minWidth: "300px" }}>
         <Alert severity={type}>{message}</Alert>
         <LinearProgress variant="determinate" value={progress} />
       </Box>

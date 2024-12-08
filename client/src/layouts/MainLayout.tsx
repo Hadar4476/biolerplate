@@ -22,10 +22,8 @@ const MainLayout = () => {
   const theme = useTheme();
   const { onToggleTheme, mode } = useThemeContext();
 
-  console.log({ mode });
-
   return (
-    <Box className="min-h-screen w-full flex flex-col">
+    <Stack className="min-h-screen">
       <AppBar position="sticky">
         <Toolbar>
           <Typography
@@ -47,10 +45,10 @@ const MainLayout = () => {
         </Toolbar>
       </AppBar>
 
-      <main className="flex-grow m-4">
+      <main className="flex-grow p-8 flex flex-col">
         <Outlet />
       </main>
-    </Box>
+    </Stack>
   );
 };
 

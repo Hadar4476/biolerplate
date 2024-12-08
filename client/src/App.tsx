@@ -21,6 +21,7 @@ import { useAppSelector } from "./store";
 import { systemActions, systemSelector } from "./store/reducers/system";
 
 import { useDispatch } from "react-redux";
+import AppLoader from "./components/common/AppLoader";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const App = () => {
   }, []);
 
   if (!isAppLoaded) {
-    return <div>loading...</div>;
+    return <AppLoader />;
   }
 
   const router = createBrowserRouter(

@@ -48,6 +48,9 @@
     },
     "grid": {
       "title": "גריד"
+    },
+    "pagination": {
+      "title": "עימוד"
     }
   }
 }

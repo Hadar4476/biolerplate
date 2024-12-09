@@ -5,7 +5,7 @@
 // run "taskkill /PID <PID_HERE> /F"
 
 // OR
-// go to task manager and see if there are duplicates for the mongodb server and end them.
+// go to task manager and see if there are duplicates for the "node.exe" program and end them.
 
 import express from "express";
 import bodyParser from "body-parser";

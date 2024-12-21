@@ -12,7 +12,7 @@ interface AppTextFieldProps {
 const AppTextField = ({ type, label, ...props }: AppTextFieldProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleTogglePasswordVisibility = () => {
+  const onTogglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
@@ -36,7 +36,7 @@ const AppTextField = ({ type, label, ...props }: AppTextFieldProps) => {
         input: {
           endAdornment: isPasswordField ? (
             <InputAdornment position="end">
-              <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+              <IconButton onClick={onTogglePasswordVisibility} edge="end">
                 {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>

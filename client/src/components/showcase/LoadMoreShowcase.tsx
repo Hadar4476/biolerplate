@@ -1,19 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { Stack, Button } from "@mui/material";
 
-const dummayData = Array.from({ length: 12 }, (_, i) => i + 1);
+const dummyData = Array.from({ length: 12 }, (_, i) => i + 1);
 
 const LoadMoreShowcase = () => {
-  const [items, setItems] = useState<number[]>(dummayData);
+  const [items, setItems] = useState<number[]>(dummyData);
   const [isLoading, setIsLoading] = useState(false);
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
 
   const loadMoreItems = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setItems((prevItems) => [...prevItems, ...dummayData]);
+      setItems((prevItems) => [...prevItems, ...dummyData]);
       setIsLoading(false);
     }, 1000); // Simulate a loading delay
   };
@@ -22,7 +21,8 @@ const LoadMoreShowcase = () => {
     if (gridRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = gridRef.current;
 
-      if (scrollHeight - scrollTop === clientHeight && !isLoading) {
+      // Adjust for potential floating-point differences
+      if (scrollHeight - scrollTop <= clientHeight + 1 && !isLoading) {
         loadMoreItems();
       }
     }
@@ -50,31 +50,29 @@ const LoadMoreShowcase = () => {
       justifyContent="space-between"
     >
       {/* Scrollable Container */}
-      <Stack ref={containerRef} flex={1} className="w-full h-full">
-        <Stack
-          ref={gridRef}
-          flex={1}
-          maxHeight={`${containerRef.current?.clientHeight}px`}
-          className="w-full h-full overflow-y-auto border border-gray-300 p-4 rounded-md"
-        >
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {items.map((item, index) => (
-              <Stack
-                key={index}
-                alignItems="center"
-                justifyContent="center"
-                className="h-full p-4 rounded-md bg-blue-200"
-              >
-                Item {item}
-              </Stack>
-            ))}
+      <Stack
+        ref={gridRef}
+        flex={1}
+        className="w-full h-full overflow-y-auto border border-gray-300 p-4 rounded-md"
+        style={{ maxHeight: "60vh" }} // Adjust the height as needed
+      >
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {items.map((item, index) => (
+            <Stack
+              key={index}
+              alignItems="center"
+              justifyContent="center"
+              className="h-full p-4 rounded-md bg-blue-200"
+            >
+              Item {item}
+            </Stack>
+          ))}
+        </div>
+        {isLoading && (
+          <div className="text-center mt-4 text-gray-500">
+            Loading more items...
           </div>
-          {isLoading && (
-            <div className="text-center mt-4 text-gray-500">
-              Loading more items...
-            </div>
-          )}
-        </Stack>
+        )}
       </Stack>
 
       {/* Load More Button */}

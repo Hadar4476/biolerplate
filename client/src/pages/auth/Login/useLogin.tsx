@@ -1,9 +1,11 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useLoginApi } from "@/api/useAuth";
+// import { useLoginApi } from "@/api/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "@/store/reducers/auth";
+import { useState } from "react";
+import { login } from "@/services/auth";
 
 // Define the shape of your form fields
 interface LoginFormValues {
@@ -16,7 +18,9 @@ export const useLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { mutate, isPending, error } = useLoginApi();
+  // const { mutate, isPending, error } = useLoginApi();
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState("");
 
   // Yup validation schema
   const validationSchema = Yup.object({
@@ -44,43 +48,77 @@ export const useLogin = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      mutate(values, {
-        onSuccess: (data) => {
-          const { token, user } = data;
+    onSubmit: async (values) => {
+      try {
+        const response = await login(values);
 
-          console.log("Login successful:", data);
+        const { token, user } = response;
 
-          localStorage.setItem("token", token);
-          localStorage.setItem("userId", user._id);
+        console.log("Login successful:", response);
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", user._id);
 
-          // will expire in 1 hour
-          const remainingMilliseconds = 60 * 60 * 1000;
-          const expiryDate = new Date(
-            new Date().getTime() + remainingMilliseconds
-          );
+        // will expire in 1 hour
+        const remainingMilliseconds = 60 * 60 * 1000;
+        const expiryDate = new Date(
+          new Date().getTime() + remainingMilliseconds
+        );
 
-          localStorage.setItem("expiryDate", expiryDate.toISOString());
+        localStorage.setItem("expiryDate", expiryDate.toISOString());
 
-          // save in store
-
-          dispatch(
-            authActions.setLoggedInUser({
-              isLoggedIn: true,
-              token,
-              expiryDate: expiryDate.toISOString(),
-              user,
-            })
-          );
-
-          navigate("/");
-        },
-        onError: (error) => {
-          console.error("Login failed:", error);
-          // Handle error (e.g., show a message)
-        },
-      });
+        // save in store
+        dispatch(
+          authActions.setLoggedInUser({
+            isLoggedIn: true,
+            token,
+            expiryDate: expiryDate.toISOString(),
+            user,
+          })
+        );
+        navigate("/");
+      } catch (error: any) {
+        setError(() => error.response.data.message);
+      } finally {
+        setIsPending(false);
+      }
     },
+    // onSubmit: (values) => {
+    //   mutate(values, {
+    //     onSuccess: (data) => {
+    //       const { token, user } = data;
+
+    //       console.log("Login successful:", data);
+
+    //       localStorage.setItem("token", token);
+    //       localStorage.setItem("userId", user._id);
+
+    //       // will expire in 1 hour
+    //       const remainingMilliseconds = 60 * 60 * 1000;
+    //       const expiryDate = new Date(
+    //         new Date().getTime() + remainingMilliseconds
+    //       );
+
+    //       localStorage.setItem("expiryDate", expiryDate.toISOString());
+
+    //       // save in store
+
+    //       dispatch(
+    //         authActions.setLoggedInUser({
+    //           isLoggedIn: true,
+    //           token,
+    //           expiryDate: expiryDate.toISOString(),
+    //           user,
+    //         })
+    //       );
+
+    //       navigate("/");
+    //     },
+    //     onError: (error) => {
+    //       console.error("Login failed:", error);
+    //       // Handle error (e.g., show a message)
+    //     },
+    //   });
+    // },
   });
 
   return {

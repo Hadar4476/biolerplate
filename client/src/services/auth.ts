@@ -5,6 +5,7 @@ import {
   IRegisterRequest,
   ILoginRequest,
   ILoginResponse,
+  IRegisterResponse,
 } from "@/types";
 
 const route = "/auth";
@@ -22,8 +23,8 @@ export const login = async (
 
 export const register = async (
   userData: IRegisterRequest
-): Promise<IUser["_id"]> => {
-  const response = await apiClient.post<IUser["_id"]>(
+): Promise<IRegisterResponse> => {
+  const response = await apiClient.post<IRegisterResponse>(
     `${route}/register`,
     userData
   );

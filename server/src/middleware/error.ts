@@ -19,7 +19,7 @@ const errorHandler = (
   }
 
   logger.error({
-    message: "An error occurred",
+    message,
     meta: { error: err, url: req.url, method: req.method },
   });
 

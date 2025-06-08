@@ -1,7 +1,9 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useRegisterApi } from "@/api/useAuth";
+// import { useRegisterApi } from "@/api/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { register } from "@/services/auth";
 
 interface RegisterFormValues {
   name: string;
@@ -12,7 +14,10 @@ interface RegisterFormValues {
 export const useRegister = () => {
   const navigate = useNavigate();
 
-  const { mutate, isPending, error } = useRegisterApi();
+  // const { mutate, isPending, error } = useRegisterApi();
+
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState("");
 
   const validationSchema = Yup.object({
     name: Yup.string().trim().required("Name is required"),
@@ -41,20 +46,35 @@ export const useRegister = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      mutate(values, {
-        onSuccess: (data) => {
-          const userId = data;
+    onSubmit: async (values) => {
+      setIsPending(true);
 
-          console.log("Register successful:", userId);
+      try {
+        const response = await register(values);
 
+        if (response) {
           navigate("/login");
-        },
-        onError: (error) => {
-          console.error("Register failed:", error);
-        },
-      });
+        }
+      } catch (error: any) {
+        setError(() => error.response.data.message);
+      } finally {
+        setIsPending(false);
+      }
     },
+    // onSubmit: (values) => {
+    //   mutate(values, {
+    //     onSuccess: (data) => {
+    //       const userId = data;
+
+    //       console.log("Register successful:", userId);
+
+    //       navigate("/login");
+    //     },
+    //     onError: (error) => {
+    //       console.error("Register failed:", error);
+    //     },
+    //   });
+    // },
   });
 
   return {

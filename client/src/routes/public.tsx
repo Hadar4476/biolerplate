@@ -2,8 +2,8 @@ import { Navigate } from "react-router-dom";
 
 import { ROUTE_NAMES } from "@/types";
 
-import Login from "@/pages/auth/login/Login";
-import Register from "@/pages/auth/register/Register";
+import Login from "@/pages/auth/Login/Login";
+import Register from "@/pages/auth/Register/Register";
 import AuthLayout from "@/layouts/AuthLayout";
 
 const publicRoutes = [

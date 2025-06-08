@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Stack } from "@mui/material";
 
 const AuthLayout = () => {
   return (
-    <Box className="min-h-screen w-full flex flex-col">
+    <Stack className="min-h-screen w-full">
       {/* Content */}
-      <main className="flex-grow mt-4">
+      <main className="flex-grow flex flex-col justify-center items-center">
         <Outlet />
       </main>
-    </Box>
+    </Stack>
   );
 };
 

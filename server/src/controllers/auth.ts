@@ -67,6 +67,12 @@ const register = async (
   try {
     const hashedPassword = await bcrypt.hash(password, 12);
 
+    const isEmailTaken = await User.findOne({ email });
+
+    if (isEmailTaken) {
+      throw new AppError("Email is already taken", 409);
+    }
+
     const user = new User({
       email,
       name,

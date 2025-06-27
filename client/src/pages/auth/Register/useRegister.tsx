@@ -9,6 +9,7 @@ interface RegisterFormValues {
   name: string;
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 export const useRegister = () => {
@@ -41,6 +42,7 @@ export const useRegister = () => {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   };
 
   const formik = useFormik({
@@ -50,7 +52,9 @@ export const useRegister = () => {
       setIsPending(true);
 
       try {
-        const response = await register(values);
+        const { confirmPassword, ...registerData } = values;
+
+        const response = await register(registerData);
 
         if (response) {
           navigate("/login");
